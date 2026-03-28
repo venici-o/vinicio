@@ -1,1 +1,217 @@
-/* Organizei — global styles */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap");
+
+:root {
+    --color-primary: #ffd633;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #121212;
+    font-family: "Inter", system-ui, sans-serif;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+/* Template pronto pra enfiar Liquid Glass onde quiser (usa nos containers) */
+.glass {
+    background-color: rgba(255, 255, 255, 0.027);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+        3px,
+        3px,
+        3px rgba(0, 0, 0, 0.089);
+    transition:
+        background 0.2s,
+        color 0.2s;
+    backdrop-filter: blur(8px);
+}
+
+/* Desktop Navbar (SÓ FUNCIONA QUANDO O MONITOR É ACIMA DE 768px) */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding-top: 24px;
+    background: #121212;
+}
+
+.navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 256px;
+    gap: 24px;
+}
+
+.navbar__brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.main_section {
+    display: flex;
+    gap: 32px;
+}
+
+.navbar__nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.button-glass {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    padding: 0 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: nowrap;
+    color: #e0e0e0;
+    background-color: rgba(255, 255, 255, 0.027);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+        3px,
+        3px,
+        3px rgba(0, 0, 0, 0.089);
+    transition:
+        background 0.2s,
+        color 0.2s;
+    backdrop-filter: blur(8px);
+}
+
+.button-glass--active {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.6) 0%,
+        #ffffff 100%
+    );
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    color: #121212;
+}
+
+.button-glass:not(.buton-glass--active):hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    flex-shrink: 0;
+}
+
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 0.6px solid rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition:
+        background 0.2s,
+        color 0.2s;
+    flex-shrink: 0;
+    background-color: transparent;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.navbar__divider {
+    height: 1px;
+    margin-top: 18px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 15%,
+        rgba(255, 255, 255, 0.15) 85%,
+        transparent 100%
+    );
+}
+
+/* Navbar em baixo SÓ FUNCIONA EM MOBILE)*/
+
+.tab-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    align-items: stretch;
+    background: rgba(18, 18, 18, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 0.5px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex: 1;
+    padding: 10px 8px 12px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.2s;
+}
+
+.tab-item--active {
+    color: #ffd633;
+}
+
+.tab-item:not(.tab-item--active):hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.tab-item__icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.tab-item__label {
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        display: none;
+    }
+
+    .tab-bar {
+        display: flex;
+    }
+}

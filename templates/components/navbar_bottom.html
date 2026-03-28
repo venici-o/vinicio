@@ -1,0 +1,37 @@
+{% load static %}
+<nav class="tab-bar" aria-label="Navegação mobile">
+
+  <a href="/" class="tab-item {% if request.resolver_match.namespace != 'goals' %}tab-item--active{% endif %}">
+    <svg class="tab-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+      <line x1="1" y1="10" x2="23" y2="10"/>
+    </svg>
+    <span class="tab-item__label">Carteira</span>
+  </a>
+
+  <a href="{% url 'goals:list' %}" class="tab-item {% if request.resolver_match.namespace == 'goals' %}tab-item--active{% endif %}" {% if request.resolver_match.namespace == 'goals' %}aria-current="page"{% endif %}>
+    <svg class="tab-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <circle cx="12" cy="12" r="6"/>
+      <circle cx="12" cy="12" r="2"/>
+    </svg>
+    <span class="tab-item__label">Objetivos</span>
+  </a>
+
+  <a href="#" class="tab-item">
+    <svg class="tab-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="18" y1="20" x2="18" y2="10"/>
+      <line x1="12" y1="20" x2="12" y2="4"/>
+      <line x1="6" y1="20" x2="6" y2="14"/>
+    </svg>
+    <span class="tab-item__label">Orçamentos</span>
+  </a>
+
+  <a href="#" class="tab-item">
+    <svg class="tab-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+    </svg>
+    <span class="tab-item__label">Assinaturas</span>
+  </a>
+
+</nav>
