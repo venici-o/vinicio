@@ -1,95 +1,69 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Metas — Organizei{% endblock %}
+{% block title %}Objetivos — Organizei{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/list.css' %}">
 {% endblock %}
 
 {% block content %}
-
-<nav class="navbar">
-  <a href="/" class="navbar__brand">Organizei</a>
-
-  <ul class="navbar__links" id="navLinks">
-    <li><a href="/" class="navbar__link">Dashboard</a></li>
-    <li><a href="{% url 'goals:list' %}" class="navbar__link navbar__link--active">Metas</a></li>
-    <li><a href="/transacoes/" class="navbar__link">Gastos</a></li>
-    <li><a href="/investimentos/" class="navbar__link">Investimentos</a></li>
-    <li><a href="/assinaturas/" class="navbar__link">Assinaturas</a></li>
-  </ul>
-
-  <button class="navbar__toggle" id="navToggle" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div class="page-content">
-
-  <div class="page-header">
-    <h1 class="page-header__title">Metas</h1>
-    <a href="{% url 'goals:create' %}" class="btn-primary">+ Nova Meta</a>
-  </div>
+<main class="page-main">
 
   {% if messages %}
-  <ul class="messages">
+  <div class="messages-container" role="alert">
     {% for message in messages %}
-    <li>{{ message }}</li>
+    <div class="message">{{ message }}</div>
     {% endfor %}
-  </ul>
+  </div>
   {% endif %}
 
-  <div class="summary-grid">
-    <div class="summary-card">
-      <p class="summary-card__label">Meta Total</p>
-      <p class="summary-card__value">R$ {{ total_target|floatformat:2 }}</p>
+  <div class="hero-card">
+    <div class="hero-stat">
+      <p class="stat-label">Total Acumulado</p>
+      <p class="stat-value">R$ {{ total_saved|floatformat:2 }}</p>
     </div>
-    <div class="summary-card">
-      <p class="summary-card__label">Acumulado</p>
-      <p class="summary-card__value">R$ {{ total_saved|floatformat:2 }}</p>
-    </div>
-    <div class="summary-card">
-      <p class="summary-card__label">Metas ativas</p>
-      <p class="summary-card__value">{{ goals.count }}</p>
+    <div class="hero-stat">
+      <p class="stat-label">Total das metas</p>
+      <p class="stat-value">R$ {{ total_target|floatformat:2 }}</p>
     </div>
   </div>
 
-  <div class="goal-list">
+  <div class="section-header">
+    <h1 class="section-header__title">Meus Objetivos</h1>
+    <a href="{% url 'goals:create' %}" class="button-glass">+ Nova Meta</a>
+  </div>
+
+  <div class="goal-grid">
     {% for goal in goals %}
     <a href="{% url 'goals:detail' goal.pk %}" class="goal-card {% if goal.is_completed %}goal-card--completed{% endif %}">
-      <div class="goal-card__top">
-        <p class="goal-card__name-row">
-          <span class="goal-card__label">Meta: </span>
-          <span class="goal-card__name">{{ goal.name }}</span>
-          {% if goal.is_completed %}<span class="badge-completed">Concluída</span>{% endif %}
-        </p>
-        <p class="goal-card__target">R$ {{ goal.target_amount|floatformat:2 }}</p>
+      <div class="goal-card__cover"></div>
+      <div class="goal-card__info">
+        <div class="goal-card__progress-bar">
+          <div class="goal-card__progress-fill" style="width: {{ goal.progress_percent }}%;"></div>
+        </div>
+        <div class="goal-card__meta-row">
+          <span class="goal-card__name">
+            {{ goal.name }}{% if goal.is_completed %}<span class="badge-completed">Concluida</span>{% endif %}
+          </span>
+          <span class="goal-card__percent">{{ goal.progress_percent }}%</span>
+        </div>
+        <div class="goal-card__values-row">
+          <span class="goal-card__current">R$ {{ goal.current_amount|floatformat:2 }}</span>
+          <div class="goal-card__target-info">
+            <span class="goal-card__target">R$ {{ goal.target_amount|floatformat:2 }}</span>
+            <span class="goal-card__deadline">Prazo: {{ goal.deadline|date:"d/m/Y" }}</span>
+          </div>
+        </div>
       </div>
-      <div class="progress-bar">
-        <div class="progress-bar__fill" style="width: {{ goal.progress_percent }}%;"></div>
-      </div>
-      <p class="goal-card__percent">{{ goal.progress_percent }}% concluído</p>
     </a>
     {% empty %}
     <div class="goals-empty">
       <p>Nenhuma meta cadastrada ainda.</p>
-      <a href="{% url 'goals:create' %}" class="btn-primary">Criar minha primeira meta</a>
+      <a href="{% url 'goals:create' %}" class="button-glass">Criar minha primeira meta</a>
     </div>
     {% endfor %}
   </div>
 
-</div>
-
-{% block extra_js %}
-<script>
-  const toggle = document.getElementById('navToggle');
-  const links  = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => {
-    links.classList.toggle('navbar__links--open');
-    toggle.classList.toggle('navbar__toggle--open');
-  });
-</script>
-{% endblock %}
-
+</main>
 {% endblock %}

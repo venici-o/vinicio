@@ -1,390 +1,313 @@
-/* =============================================
-   RESET & BASE
-   ============================================= */
-
-*, *::before, *::after { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: "DM Sans", sans-serif;
-  background: #f5f5f7;
-  color: #303048;
+.page-main {
+    width: 100%;
+    max-width: 1312px;
+    margin: 0 auto;
+    padding: 60px 64px 80px;
 }
 
-/* =============================================
-   NAVBAR
-   ============================================= */
-
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #fff;
-  border-bottom: 1px solid #efeff1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  padding: 0 24px;
-  gap: 16px;
+.messages-container {
+    margin-bottom: 24px;
 }
 
-.navbar__brand {
-  font-size: 17px;
-  font-weight: 900;
-  color: #303048;
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
+.message {
+    padding: 12px 20px;
+    border-radius: 16px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    background: rgba(255, 214, 51, 0.12);
+    border: 0.7px solid rgba(255, 214, 51, 0.35);
+    color: #ffd633;
 }
 
-/* Nav links — horizontal on desktop */
-.navbar__links {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.hero-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 36px;
+    background-color: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+    padding: 30px 160px;
+    margin-bottom: 30px;
 }
 
-.navbar__link {
-  text-decoration: none;
-  color: #879a88;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 7px 14px;
-  border-radius: 10px;
-  white-space: nowrap;
-  transition: background 0.15s, color 0.15s;
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
 }
 
-.navbar__link:hover {
-  background: #f5f5f7;
-  color: #303048;
+.stat-label {
+    font-size: 24px;
+    font-weight: 800;
+    color: #6d6d6d;
+    margin: 0;
+    text-align: center;
+    line-height: 1.5;
 }
 
-.navbar__link--active {
-  background: #494655;
-  color: #fff;
+.stat-value {
+    font-size: 48px;
+    font-weight: 800;
+    color: #ffd633;
+    margin: 0;
+    text-align: center;
+    line-height: 1.5;
 }
 
-.navbar__link--active:hover {
-  background: #383545;
-  color: #fff;
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
 }
 
-/* Hamburger button — hidden on desktop */
-.navbar__toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  flex-shrink: 0;
+.section-header__title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e0e0e0;
+    margin: 0;
 }
 
-.navbar__toggle span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #303048;
-  border-radius: 2px;
-  transition: transform 0.25s, opacity 0.25s;
-  transform-origin: center;
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
 }
 
-/* Hamburger → X animation */
-.navbar__toggle--open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.navbar__toggle--open span:nth-child(2) { opacity: 0; }
-.navbar__toggle--open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-
-/* =============================================
-   PAGE CONTENT
-   ============================================= */
-
-.page-content {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 32px 24px 48px;
-}
-
-.page-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 28px;
-}
-
-.page-header__title {
-  font-size: 24px;
-  font-weight: 900;
-  color: #303048;
-  margin: 0;
-}
-
-/* =============================================
-   BUTTONS
-   ============================================= */
-
-.btn-primary {
-  display: inline-block;
-  background: #494655;
-  color: #fff;
-  padding: 10px 22px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: background 0.15s;
-}
-
-.btn-primary:hover { background: #383545; }
-
-/* =============================================
-   MESSAGES
-   ============================================= */
-
-.messages {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 20px;
-}
-
-.messages li {
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-size: 14px;
-  margin-bottom: 8px;
-  background: #e8f5e9;
-  color: #2e7d32;
-}
-
-/* =============================================
-   SUMMARY CARDS
-   ============================================= */
-
-.summary-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-.summary-card {
-  background: #fff;
-  border: 1px solid #efeff1;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(34, 24, 63, 0.05);
-  padding: 20px 24px;
-}
-
-.summary-card__label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #879a88;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin: 0 0 6px;
-}
-
-.summary-card__value {
-  font-size: 24px;
-  font-weight: 900;
-  color: #303048;
-  margin: 0;
-}
-
-/* =============================================
-   GOAL CARDS — GRID
-   ============================================= */
-
-.goal-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+.goal-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
 }
 
 .goal-card {
-  background: #fff;
-  border: 1px solid #efeff1;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(34, 24, 63, 0.05);
-  padding: 20px 22px 18px;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: box-shadow 0.2s, transform 0.2s;
+    width: 350px;
+    flex-shrink: 0;
+    border-radius: 36px;
+    background-color: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .goal-card:hover {
-  box-shadow: 0 8px 32px rgba(34, 24, 63, 0.12);
-  transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0px 12px 32px 0px rgba(0, 0, 0, 0.35);
 }
 
-.goal-card__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 12px;
-  gap: 8px;
+.goal-card__cover {
+    height: 194px;
+    width: 100%;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 36px 36px 0 0;
 }
 
-.goal-card__name-row {
-  font-size: 15px;
-  margin: 0;
-  line-height: 1.4;
+.goal-card:nth-child(6n + 1) .goal-card__cover {
+    background-color: #0f3040;
+}
+.goal-card:nth-child(6n + 2) .goal-card__cover {
+    background-color: #0f2e1a;
+}
+.goal-card:nth-child(6n + 3) .goal-card__cover {
+    background-color: #200a35;
+}
+.goal-card:nth-child(6n + 4) .goal-card__cover {
+    background-color: #2a1500;
+}
+.goal-card:nth-child(6n + 5) .goal-card__cover {
+    background-color: #101525;
+}
+.goal-card:nth-child(6n + 6) .goal-card__cover {
+    background-color: #2a0a18;
 }
 
-.goal-card__label { color: #c7c4be; }
+.goal-card__cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.04) 0%,
+        transparent 60%
+    );
+    pointer-events: none;
+}
+
+.goal-card__info {
+    padding: 16px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.goal-card__progress-bar {
+    height: 7px;
+    border-radius: 100px;
+    background: #d9d9d9;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.goal-card__progress-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: #ffd633;
+    transition: width 0.4s ease;
+    max-width: 100%;
+}
+
+/* Name + percentage row */
+.goal-card__meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 14px;
+}
 
 .goal-card__name {
-  color: #303048;
-  font-weight: 500;
-}
-
-.goal-card__target {
-  font-size: 14px;
-  font-weight: 700;
-  color: #303048;
-  margin: 0;
-  white-space: nowrap;
+    font-size: 18px;
+    font-weight: 900;
+    color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .goal-card__percent {
-  font-size: 12px;
-  color: #879a88;
-  margin: 8px 0 0;
+    font-size: 18px;
+    font-weight: 900;
+    color: #ffffff;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-/* Progress bar */
-.progress-bar {
-  height: 7px;
-  border-radius: 100px;
-  background: #d9d9d9;
-  overflow: hidden;
+/* Values row */
+.goal-card__values-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
-.progress-bar__fill {
-  height: 100%;
-  border-radius: 100px;
-  background: linear-gradient(to right, #c7c4be, #8d8a97);
-  transition: width 0.4s ease;
+.goal-card__current {
+    font-size: 30px;
+    font-weight: 800;
+    color: #ffd633;
+    white-space: nowrap;
 }
 
-.goal-card--completed .progress-bar__fill {
-  background: linear-gradient(to right, #8d8a97, #494655);
+.goal-card__target-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
 }
 
+.goal-card__target {
+    font-size: 19px;
+    font-weight: 800;
+    color: #6d6d6d;
+}
+
+.goal-card__deadline {
+    font-size: 10px;
+    font-weight: 700;
+    color: #6d6d6d;
+}
+
+/* Completed badge */
 .badge-completed {
-  font-size: 11px;
-  background: #494655;
-  color: #fff;
-  border-radius: 6px;
-  padding: 2px 8px;
-  margin-left: 6px;
-  vertical-align: middle;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    background: rgba(255, 214, 51, 0.15);
+    color: #ffd633;
+    border: 0.6px solid rgba(255, 214, 51, 0.4);
+    border-radius: 999px;
+    padding: 2px 10px;
+    margin-left: 8px;
+    vertical-align: middle;
 }
 
-/* Empty state */
 .goals-empty {
-  text-align: center;
-  padding: 60px 24px;
-  color: #879a88;
-  grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 24px;
+    color: #6d6d6d;
+    width: 100%;
 }
 
 .goals-empty p {
-  font-size: 15px;
-  margin-bottom: 16px;
+    font-size: 16px;
+    margin-bottom: 20px;
 }
 
-/* =============================================
-   RESPONSIVE BREAKPOINTS
-   ============================================= */
+@media (max-width: 1200px) {
+    .hero-card {
+        padding: 30px 80px;
+    }
+}
 
-/* Tablet — 2 columns */
 @media (max-width: 1024px) {
-  .goal-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .page-main {
+        padding: 48px 32px 60px;
+    }
 
-  .summary-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .hero-card {
+        padding: 30px 40px;
+    }
 
-  .summary-grid .summary-card:last-child {
-    grid-column: 1 / -1;
-  }
+    .hero-stat__label {
+        font-size: 18px;
+    }
+    .hero-stat__value {
+        font-size: 36px;
+    }
 }
 
-/* Mobile — hamburger menu, 1 column */
-@media (max-width: 640px) {
-  .navbar {
-    padding: 0 16px;
-    flex-wrap: wrap;
-    height: auto;
-    min-height: 60px;
-  }
+@media (max-width: 768px) {
+    .page-main {
+        padding: 32px 20px calc(80px + env(safe-area-inset-bottom, 16px));
+    }
 
-  /* Show hamburger, hide links by default */
-  .navbar__toggle {
-    display: flex;
-  }
+    .hero-card {
+        flex-direction: column;
+        padding: 28px 32px;
+        gap: 20px;
+        align-items: center;
+    }
 
-  .navbar__links {
-    display: none;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    padding: 8px 0 12px;
-    gap: 2px;
-    order: 3;
-  }
+    .goal-grid {
+        justify-content: center;
+    }
 
-  .navbar__links--open {
-    display: flex;
-  }
+    .goal-card {
+        width: 100%;
+        max-width: 420px;
+    }
+}
 
-  .navbar__link {
-    padding: 10px 12px;
-    font-size: 15px;
-  }
-
-  /* Page content */
-  .page-content {
-    padding: 20px 16px 40px;
-  }
-
-  .page-header__title {
-    font-size: 20px;
-  }
-
-  /* Summary: single column stack */
-  .summary-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .summary-grid .summary-card:last-child {
-    grid-column: auto;
-  }
-
-  .summary-card {
-    padding: 16px 18px;
-  }
-
-  .summary-card__value {
-    font-size: 20px;
-  }
-
-  /* Goal cards: single column */
-  .goal-list {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 480px) {
+    .hero-stat__label {
+        font-size: 14px;
+    }
+    .hero-stat__value {
+        font-size: 26px;
+    }
+    .goal-card__current {
+        font-size: 24px;
+    }
 }
