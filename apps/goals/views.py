@@ -1,10 +1,11 @@
+from decimal import Decimal, InvalidOperation
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import GoalContributionForm, GoalForm
-from .models import Goal
+from .models import Goal, GoalContribution
 
 
 @login_required
@@ -24,17 +25,41 @@ def goal_list(request):
 
 @login_required
 def goal_create(request):
+    errors = {}
+    data = {}
+
     if request.method == "POST":
-        form = GoalForm(request.POST)
-        if form.is_valid():
-            goal = form.save(commit=False)
-            goal.user = request.user
-            goal.save()
+        data = {
+            "name": request.POST.get("name", "").strip(),
+            "target_amount": request.POST.get("target_amount", "").strip(),
+            "deadline": request.POST.get("deadline", "").strip(),
+        }
+
+        if not data["name"]:
+            errors["name"] = "Nome da meta é obrigatório."
+
+        amount = None
+        try:
+            amount = Decimal(data["target_amount"])
+            if amount <= 0:
+                errors["target_amount"] = "O valor deve ser maior que zero."
+        except (InvalidOperation, ValueError):
+            errors["target_amount"] = "Informe um valor válido."
+
+        if not data["deadline"]:
+            errors["deadline"] = "Data limite é obrigatória."
+
+        if not errors:
+            goal = Goal.objects.create(
+                user=request.user,
+                name=data["name"],
+                target_amount=amount,
+                deadline=data["deadline"],
+            )
             messages.success(request, f'Meta "{goal.name}" criada com sucesso!')
             return redirect("goals:list")
-    else:
-        form = GoalForm()
-    return render(request, "goals/form.html", {"form": form})
+
+    return render(request, "goals/form.html", {"errors": errors, "data": data})
 
 
 @login_required
@@ -47,20 +72,37 @@ def goal_detail(request, pk):
 @login_required
 def goal_contribute(request, pk):
     goal = get_object_or_404(Goal, pk=pk, user=request.user)
-    if request.method == "POST":
-        form = GoalContributionForm(request.POST)
-        if form.is_valid():
-            contribution = form.save(commit=False)
-            contribution.goal = goal
-            contribution.save()
+    errors = {}
+    data = {}
 
+    if request.method == "POST":
+        data = {
+            "amount": request.POST.get("amount", "").strip(),
+            "date": request.POST.get("date", "").strip(),
+        }
+
+        amount = None
+        try:
+            amount = Decimal(data["amount"])
+            if amount <= 0:
+                errors["amount"] = "O valor deve ser maior que zero."
+        except (InvalidOperation, ValueError):
+            errors["amount"] = "Informe um valor válido."
+
+        if not data["date"]:
+            errors["date"] = "Data é obrigatória."
+
+        if not errors:
+            contribution = GoalContribution.objects.create(
+                goal=goal,
+                amount=amount,
+                date=data["date"],
+            )
             just_completed = goal.check_completion()
             if just_completed:
                 messages.success(request, f'Parabéns! Você atingiu sua meta "{goal.name}"! 🎉')
             else:
                 messages.success(request, f"Contribuição de R$ {contribution.amount} registrada!")
-
             return redirect("goals:detail", pk=pk)
-    else:
-        form = GoalContributionForm()
-    return render(request, "goals/contribute.html", {"form": form, "goal": goal})
+
+    return render(request, "goals/contribute.html", {"errors": errors, "data": data, "goal": goal})

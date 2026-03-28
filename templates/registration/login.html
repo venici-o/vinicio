@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login — Organizei{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block tab_bar %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="login-wrapper">
+  <div class="login-card glass">
+    <h1 class="login-card__brand">🔥 Organizei</h1>
+    <p class="login-card__subtitle">Entre na sua conta</p>
+
+    {% if error %}
+    <ul class="error-list">
+      <li>{{ error }}</li>
+    </ul>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="field">
+        <label for="id_username">Usuário</label>
+        <input type="text" name="username" id="id_username" autofocus>
+      </div>
+      <div class="field">
+        <label for="id_password">Senha</label>
+        <input type="password" name="password" id="id_password">
+      </div>
+      <input type="hidden" name="next" value="{{ next }}">
+      <button type="submit" class="btn-login">Entrar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
