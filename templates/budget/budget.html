@@ -1,0 +1,20 @@
+<h2>Resumo do orçamento</h2>
+
+<p>Total gasto: R$ {{ total|floatformat:2 }}</p>
+
+{% if budget %}
+    <p>Limite: R$ {{ budget.limit|floatformat:2 }}</p>
+    <p>Uso: {{ percent|floatformat:1 }}%</p>
+
+    {% if percent >= 80 and percent < 100 %}
+        <p style="color: orange;">Você atingiu 80% do limite</p>
+    {% endif %}
+
+    {% if percent >= 100 %}
+        <p style="color: red;">Limite ultrapassado!</p>
+    {% endif %}
+{% else %}
+    <p>Você ainda não definiu um limite.</p>
+{% endif %}
+
+<a href="{% url 'set_budget' %}">Alterar limite do mês</a>

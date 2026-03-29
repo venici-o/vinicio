@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Transaction(models.Model):
     # Definição dos tipos
@@ -7,6 +8,7 @@ class Transaction(models.Model):
         ('WITHDRAWAL', 'Saída'),
     ]
     # Campos de uma transação (provisórios)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=150, verbose_name="Descrição")
     value = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Valor")
     transaction_type = models.CharField(

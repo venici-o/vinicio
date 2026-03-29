@@ -15,14 +15,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Transaction',
+            name='Budget',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=150, verbose_name='Descrição')),
-                ('value', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Valor')),
-                ('transaction_type', models.CharField(choices=[('DEPOSIT', 'Entrada'), ('WITHDRAWAL', 'Saída')], max_length=10, verbose_name='Tipo de Transação')),
-                ('date', models.DateField(auto_now_add=True, verbose_name='Data')),
+                ('month', models.DateField()),
+                ('limit', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
+            options={
+                'unique_together': {('user', 'month')},
+            },
         ),
     ]
