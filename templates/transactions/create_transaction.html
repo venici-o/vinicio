@@ -3,12 +3,81 @@
 {% block title %}Transações — Organizei{% endblock %}
 
 {% block content %}
-
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    .new_transaction {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    .new_transaction header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 30px 30px;
+    }
+    h2 {
+        color: #444;
+        font-weight: bold;
+    }
+    .back_button {
+        font-weight: bold;
+        font-size: 22px;
+        cursor: pointer;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        padding: 20px 50px;
+    }
+    select{
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    input{
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        width: 100%;
+        color: #444;
+        outline: none;
+    }
+    p{
+        margin-left: 5px;
+        margin-top: 5px;
+        font-size: 14px;
+        color: #aaa;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #ccc;
+        font-weight: 500;
+        font-size: 16px;
+        color: #000;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        width: 100%;
+    }
+</style>
 
 <section class="new_transaction">
     <header>
         <span class="back_button">&lt;</span>
-        <h2>Criar Nova Transação</h2>
+        <h2>Nova Transação</h2>
     </header>
     <form method="post" action="{% url 'transactions:create_transaction' %}">
         {% csrf_token %}
