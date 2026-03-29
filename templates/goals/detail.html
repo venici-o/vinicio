@@ -4,7 +4,7 @@
 {% block title %}{{ goal.name }} — Organizei{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/contribute.css' %}">
+<link rel="stylesheet" href="{% static 'css/goals_details.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -18,21 +18,23 @@
 
   <div class="detail-body">
 
-    <!-- Progress section -->
     <div class="progress-section">
-      <div class="progress-section__row">
+      <div class="progress-section__stat">
         <span class="progress-section__label">Acumulado</span>
         <span class="progress-section__value">R$ {{ goal.current_amount|floatformat:2 }}</span>
       </div>
-      <div class="progress-section__row">
+      <div class="progress-section__stat">
         <span class="progress-section__label">Alvo</span>
         <span class="progress-section__value">R$ {{ goal.target_amount|floatformat:2 }}</span>
       </div>
-      <p class="progress-section__percent">{{ goal.progress_percent }}%</p>
-      <div class="progress-bar">
-        <div class="progress-bar__fill" style="width: {% if goal.progress_percent > 0 %}max({{ goal.progress_percent }}%, 2%){% else %}0%{% endif %};"></div>
+      <div class="progress-section__stat">
+        <span class="progress-section__label">Progresso</span>
+        <p class="progress-section__percent">{{ goal.progress_percent }}%</p>
       </div>
-      <p class="progress-section__deadline">Data limite: {{ goal.deadline|date:"d/m/Y" }}</p>
+      <div class="progress-section__stat">
+        <span class="progress-section__label">Data limite</span>
+        <span class="progress-section__value">{{ goal.deadline|date:"d/m/Y" }}</span>
+      </div>
     </div>
 
     {% if goal.is_completed %}
@@ -41,7 +43,6 @@
     <a href="{% url 'goals:contribute' goal.pk %}" class="btn-contribute">+ Registrar contribuição</a>
     {% endif %}
 
-    <!-- Contributions -->
     <p class="contributions-title">Histórico de contribuições</p>
     {% for contribution in contributions %}
     <div class="contribution-item">
