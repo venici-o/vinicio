@@ -1,0 +1,189 @@
+.budget-container {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.budget-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 32px;
+    padding: 48px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+}
+
+.budget-hero__label {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+.budget-hero__amount {
+    font-size: 64px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -2px;
+}
+
+.budget-progress-section {
+    padding: 0 16px;
+    margin-top: 8px;
+}
+
+.budget-progress__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 12px;
+}
+
+.budget-progress__percent {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.budget-progress__bar-bg {
+    width: 100%;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.budget-progress__bar-fill {
+    height: 100%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bg-success { background: rgba(48, 194, 29, 0.6); }
+.bg-warning { background: #ffa500; }
+.bg-danger  { background: rgba(243, 64, 53, 0.6); }
+
+.color-warning { color: #ffa500; }
+.color-danger  { color: #f34035; }
+
+.budget-status-msg {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Layouts da página de ajuste */
+.budget-container--narrow {
+    max-width: 500px;
+}
+
+.budget-header-centered {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.budget-hero--form {
+    padding: 32px;
+    align-items: stretch;
+    gap: 24px;
+}
+
+.budget-hero--form .budget-hero__label {
+    text-align: center;
+    white-space: normal;
+}
+
+.budget-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.budget-form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.budget-form-actions .button-glass {
+    text-decoration: none;
+    flex: 1;
+    text-align: center;
+}
+
+.button-glass--primary {
+    border: 0.6px solid rgba(255, 255, 255, 0.8) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    cursor: pointer;
+}
+
+.budget-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.budget-input-prefix {
+    position: absolute;
+    left: 24px;
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+}
+
+.budget-input-large {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px 60px; /* Espaço para prefixo e setas customizadas */
+    color: white;
+    font-size: 32px;
+    text-align: center;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -moz-appearance: textfield; /* Esconde setas no Firefox */
+}
+
+.budget-input-large::-webkit-outer-spin-button,
+.budget-input-large::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.budget-input-large:focus {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Setas Customizadas */
+.budget-input-controls {
+    position: absolute;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    font-size: 10px;
+    padding: 4px 8px;
+    transition: all 0.2s;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}

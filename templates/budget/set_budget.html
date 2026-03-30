@@ -1,34 +1,51 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Objetivos — Organizei{% endblock %}
+{% block title %}Definir Limite — Organizei{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/goals/list.css' %}">
+<link rel="stylesheet" href="{% static 'css/budget/budget.css' %}">
 {% endblock %}
 
 {% block content %}
-<h2>Definir limite mensal</h2>
+<main class="main-content">
+    <div class="budget-container budget-container--narrow">
+        <div class="budget-header-centered">
+            <h1 class="tx-group__label">Limite Mensal</h1>
+        </div>
 
-{% if messages %}
-    {% for message in messages %}
-        <p style="color: green;">{{ message }}</p>
-    {% endfor %}
-{% endif %}
+        <div class="budget-hero budget-hero--form">
+            <h2 class="budget-hero__label">
+                Determine o seu limite de gastos:  <br>
+            </h2>
 
-<form method="POST">
-    {% csrf_token %}
-    
-    <label>Limite:</label>
-    <input 
-        type="number" 
-        step="0.01" 
-        name="limit" 
-        min="0.01"
-        value="{{ budget.limit|default:'' }}"
-        required
-    >
+            <form method="POST" class="budget-form">
+                {% csrf_token %}
+                <div class="budget-input-group">
+                    <span class="budget-input-prefix">R$</span>
+                    <input
+                        type="number" 
+                        step="10" 
+                        name="limit" 
+                        id="limit"
+                        min="0"
+                        value="{{ budget.limit|default:'' }}"
+                        required
+                        placeholder="0,00"
+                        class="budget-input-large"
+                    >
+                    <div class="budget-input-controls">
+                        <button type="button" onclick="document.getElementById('limit').stepUp()" class="control-btn">▲</button>
+                        <button type="button" onclick="document.getElementById('limit').stepDown()" class="control-btn">▼</button>
+                    </div>
+                </div>
 
-    <button type="submit">Salvar</button>
-</form>
-{%endblock%}
+                <div class="budget-form-actions">
+                    <a href="{% url 'budget:list' %}" class="button-glass">Cancelar</a>
+                    <button type="submit" class="button-glass button-glass--primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

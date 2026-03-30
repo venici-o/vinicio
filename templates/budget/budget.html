@@ -4,58 +4,45 @@
 {% block title %}Objetivos — Organizei{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/budget/budget.css' %}">
 {% endblock %}
 
 {% block content %}
 <main class="main-content">
-<div class="tx-groups">
-    <div class="tx-section-header">
-        <center>
-    <h1>
-            Resumo do Orçamento
-        </h1>
-    </center>
+<div class="budget-container">
+    <div class="budget-hero">
+        <span class="budget-hero__label">Total gasto este mês</span>
+        <p class="budget-hero__amount {% if percent >= 100 %}stat-value--expense{% else %}stat-value--income{% endif %}">
+            R$ {{ total|floatformat:2 }}
+        </p>
     </div>
 
-    <div class="tx-item" style="flex-direction: column; align-items: flex-start; gap: 16px; border-radius: 24px; padding: 24px; height: auto;">
-        <div>
-            <span class="tx-item__meta">Total gasto este mês</span>
-            <p class="tx-item__amount {% if percent >= 100 %}stat-value--expense{% else %}stat-value--income{% endif %}" style="font-size: 32px; font-weight: 700; padding: 0; color: var(--color-primary);">
-                R$ {{ total|floatformat:2 }}
-            </p>
-        </div>
-
+    <div class="budget-progress-section">
         {% if budget %}
-            <div style="width: 100%;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span class="tx-item__meta">Limite: R$ {{ budget.limit|floatformat:2 }}</span>
-                    <span class="tx-item__meta">{{ percent|floatformat:1 }}%</span>
+            <div class="budget-progress__container">
+                <div class="budget-progress__info">
+                    <span class="budget-hero__label">Limite: R$ {{ budget.limit|floatformat:2 }}</span>
+                    <span class="budget-progress__percent">{{ percent|floatformat:1 }}%</span>
                 </div>
                 
-                {# Barra de Progresso #}
-                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden;">
-                    <div style="width: {{ percent }}%; height: 100%; 
-                        background: {% if percent >= 100 %}rgba(243, 64, 53, 0.6){% elif percent >= 80 %}orange{% else %}rgba(48, 194, 29, 0.6){% endif %}; 
-                        transition: width 0.3s ease;">
+                <div class="budget-progress__bar-bg">
+                    <div class="budget-progress__bar-fill {% if percent >= 100 %}bg-danger{% elif percent >= 80 %}bg-warning{% else %}bg-success{% endif %}" 
+                         style="width: {% if percent > 100 %}100{% else %}{{ percent }}{% endif %}%;">
                     </div>
                 </div>
             </div>
-
-            {% if percent >= 80 and percent < 100 %}
-                <p style="color: orange; font-size: 14px; margin: 0;">⚠️ Você atingiu 80% do seu limite mensal.</p>
-            {% endif %}
-
-            {% if percent >= 100 %}
-                <p style="color: #f34035; font-size: 14px; margin: 0;">🚨 Limite ultrapassado!</p>
+            
+            {% if percent >= 80 %}
+                <p class="budget-status-msg {% if percent >= 100 %}color-danger{% else %}color-warning{% endif %}">
+                    {% if percent >= 100 %}Limite ultrapassado!{% else %}Você atingiu 80% do seu limite mensal.{% endif %}
+                </p>
             {% endif %}
         {% else %}
-            <p class="tx-empty" style="padding: 20px 0;">Você ainda não definiu um limite para este mês.</p>
+            <p class="tx-empty">Você ainda não definiu um limite para este mês.</p>
         {% endif %}
-    </div>
 
-    <div style="margin-top: 16px;">
-        <a href="{% url 'budget:set_budget' %}" class="button-glass">
+        <center>
+        <a href="{% url 'budget:set_budget' %}" class="button-glass" style="margin-top: 32px">
             {% if budget %}Alterar limite do mês{% else %}Definir primeiro limite{% endif %}
         </a>
     </div>

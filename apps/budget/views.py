@@ -40,7 +40,8 @@ def budget_view(request):
     total = Transaction.objects.filter(
         user=request.user,
         date__month=today.month,
-        date__year=today.year
+        date__year=today.year,
+        transaction_type='WITHDRAWAL'
     ).aggregate(total=Sum('value'))['total'] or 0
 
     percent = 0
