@@ -1,9 +1,14 @@
-# Organizei
+<img width="1016" height="372" alt="main(1)" src="https://github.com/user-attachments/assets/d2451456-959a-4b50-b621-c7464ac77be6" />
 
+<h1 align='center'>
+Organizei
+</h1>
+<div align='center'>
 Aplicação web de gestão financeira pessoal: controle de gastos, investimentos, metas e assinaturas.
 
 **Repositório:** [github.com/DoctahW/organizei](https://github.com/DoctahW/organizei)
 **Disciplina:** Fundamentos de Desenvolvimento de Software — Turma 2B — 2026.1
+</div>
 
 ---
 
