@@ -75,7 +75,9 @@ WSGI_APPLICATION = "project.wsgi.application"
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 # Usa PostgreSQL se DATABASE_URL ou AZURE_POSTGRESQL_CONNECTIONSTRING estiver disponível
-_db_url = os.environ.get("DATABASE_URL") or os.environ.get("AZURE_POSTGRESQL_CONNECTIONSTRING")
+_db_url = os.environ.get("DATABASE_URL")
+_azure_conn = os.environ.get("AZURE_POSTGRESQL_CONNECTIONSTRING")
+
 if _db_url:
     DATABASES = {
         "default": dj_database_url.config(
@@ -83,6 +85,21 @@ if _db_url:
             conn_max_age=600,
             conn_health_checks=True,
         )
+    }
+elif _azure_conn:
+    # Azure Service Connector usa formato libpq: "host=xxx port=5432 dbname=xxx user=xxx password=xxx"
+    _params = dict(token.split("=", 1) for token in _azure_conn.split() if "=" in token)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": _params.get("dbname", ""),
+            "USER": _params.get("user", ""),
+            "PASSWORD": _params.get("password", ""),
+            "HOST": _params.get("host", ""),
+            "PORT": _params.get("port", "5432"),
+            "OPTIONS": {"sslmode": _params.get("sslmode", "require")},
+            "CONN_MAX_AGE": 600,
+        }
     }
 else:
     DATABASES = {
