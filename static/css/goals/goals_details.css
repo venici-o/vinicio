@@ -118,22 +118,51 @@
 
 .contribution-item {
     display: flex;
-    justify-content: space-between;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    align-items: center;
+    width: 100%;
+    padding: 16px 16px 16px 22px;
+    border-radius: 999px;
+    gap: 12px;
 }
 
-.contribution-item:last-child { border-bottom: none; }
+.contribution-item__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
 
-.contribution-item__date {
+.contribution-item__meta {
+    display: flex;
+    align-items: center;
+    gap: 2px;
     font-size: 14px;
-    color: #6d6d6d;
+    font-weight: 300;
+    color: #e0e0e0;
+    letter-spacing: -0.07px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
+.contribution-item__meta-dot {
+    font-size: 20px;
+    line-height: 1;
+    opacity: 0.4;
+}
+
+/* Amount */
 .contribution-item__amount {
-    font-size: 15px;
-    font-weight: 600;
-    color: #ffd633;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.08px;
+    line-height: 1.4;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-right: 4px;
+    margin: 0;
+    color:  rgba(48, 194, 29, 0.6);
 }
 
 .no-contributions {

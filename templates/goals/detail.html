@@ -45,10 +45,18 @@
 
     <p class="contributions-title">Histórico de contribuições</p>
     {% for contribution in contributions %}
-    <div class="contribution-item">
-      <span class="contribution-item__date">{{ contribution.date|date:"d/m/Y" }}</span>
-      <span class="contribution-item__amount">R$ {{ contribution.amount|floatformat:2 }}</span>
-    </div>
+
+    <div class="contribution-item glass">
+        <div class="contribution-item__info">
+          <div class="contribution-item__meta">
+            <span>Contribuição</span>
+            <span class="tx-item__meta-dot">·</span>
+            <span>{{ contribution.date|date:"d/m/Y" }}</span>
+          </div>
+        </div>
+        <span class="contribution-item__amount">+ R$ {{ contribution.amount|floatformat:2 }}</span>
+
+      </div>
     {% empty %}
     <p class="no-contributions">Nenhuma contribuição ainda.</p>
     {% endfor %}

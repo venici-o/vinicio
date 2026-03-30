@@ -72,7 +72,14 @@
 
 .field input[type="number"]::-webkit-inner-spin-button,
 .field input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
     appearance: none;
+}
+
+.field input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.75;
+    cursor: pointer;
 }
 
 .field-error {
