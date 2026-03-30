@@ -1,20 +1,64 @@
-<h2>Resumo do orçamento</h2>
+{% extends "base.html" %}
+{% load static %}
 
-<p>Total gasto: R$ {{ total|floatformat:2 }}</p>
+{% block title %}Objetivos — Organizei{% endblock %}
 
-{% if budget %}
-    <p>Limite: R$ {{ budget.limit|floatformat:2 }}</p>
-    <p>Uso: {{ percent|floatformat:1 }}%</p>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
 
-    {% if percent >= 80 and percent < 100 %}
-        <p style="color: orange;">Você atingiu 80% do limite</p>
-    {% endif %}
+{% block content %}
+<main class="main-content">
+<div class="tx-groups">
+    <div class="tx-section-header">
+        <center>
+    <h1>
+            Resumo do Orçamento
+        </h1>
+    </center>
+    </div>
 
-    {% if percent >= 100 %}
-        <p style="color: red;">Limite ultrapassado!</p>
-    {% endif %}
-{% else %}
-    <p>Você ainda não definiu um limite.</p>
-{% endif %}
+    <div class="tx-item" style="flex-direction: column; align-items: flex-start; gap: 16px; border-radius: 24px; padding: 24px; height: auto;">
+        <div>
+            <span class="tx-item__meta">Total gasto este mês</span>
+            <p class="tx-item__amount {% if percent >= 100 %}stat-value--expense{% else %}stat-value--income{% endif %}" style="font-size: 32px; font-weight: 700; padding: 0; color: var(--color-primary);">
+                R$ {{ total|floatformat:2 }}
+            </p>
+        </div>
 
-<a href="{% url 'set_budget' %}">Alterar limite do mês</a>
+        {% if budget %}
+            <div style="width: 100%;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span class="tx-item__meta">Limite: R$ {{ budget.limit|floatformat:2 }}</span>
+                    <span class="tx-item__meta">{{ percent|floatformat:1 }}%</span>
+                </div>
+                
+                {# Barra de Progresso #}
+                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden;">
+                    <div style="width: {{ percent }}%; height: 100%; 
+                        background: {% if percent >= 100 %}rgba(243, 64, 53, 0.6){% elif percent >= 80 %}orange{% else %}rgba(48, 194, 29, 0.6){% endif %}; 
+                        transition: width 0.3s ease;">
+                    </div>
+                </div>
+            </div>
+
+            {% if percent >= 80 and percent < 100 %}
+                <p style="color: orange; font-size: 14px; margin: 0;">⚠️ Você atingiu 80% do seu limite mensal.</p>
+            {% endif %}
+
+            {% if percent >= 100 %}
+                <p style="color: #f34035; font-size: 14px; margin: 0;">🚨 Limite ultrapassado!</p>
+            {% endif %}
+        {% else %}
+            <p class="tx-empty" style="padding: 20px 0;">Você ainda não definiu um limite para este mês.</p>
+        {% endif %}
+    </div>
+
+    <div style="margin-top: 16px;">
+        <a href="{% url 'budget:set_budget' %}" class="button-glass">
+            {% if budget %}Alterar limite do mês{% else %}Definir primeiro limite{% endif %}
+        </a>
+    </div>
+</div>
+</main>
+{% endblock %}

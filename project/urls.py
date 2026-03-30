@@ -7,8 +7,6 @@ def root_redirect(request):
     if request.user.is_authenticated:
         return redirect("transactions:list")
     return redirect("login")
-
-
 urlpatterns = [
     path("", root_redirect, name="root"),
     path("admin/", admin.site.urls),
