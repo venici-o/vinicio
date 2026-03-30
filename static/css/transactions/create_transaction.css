@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", system-ui, sans-serif;
+}
+
+.new_transaction {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 70px;
+}
+
+.new_transaction header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 40px 40px 0;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #6d6d6d;
+    line-height: 1.5;
+}
+
+.back_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+.back_button svg{
+    color: rgba(214, 214, 214, 0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+    width: 30px;
+    height: 30px;
+}
+.back_button:hover{
+    color: #aaa;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 20px 150px;
+}
+
+select {
+    color: #ccc;
+    padding: 10px;
+    background-color: #222;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+input {
+    background-color: #222;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    width: 100%;
+    color: #ffffff;
+    outline: none;
+}
+input::selection{
+    background-color: #444;
+
+}
+
+p {
+    margin-left: 5px;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: -0.07px;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .new_transaction {
+        padding: 20px;
+    }
+    .new_transaction header{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    form{
+        padding: 20px;
+    }
+}
