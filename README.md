@@ -3,11 +3,11 @@
 Aplicação web de gestão financeira pessoal: controle de gastos, investimentos, metas e assinaturas.
 
 **Repositório:** [github.com/DoctahW/organizei](https://github.com/DoctahW/organizei)
-**Disciplina:** Fundamentos de Software — Turma 2B — 2026.1
+**Disciplina:** Fundamentos de Desenvolvimento de Software — Turma 2B — 2026.1
 
 ---
 
-## Entrega 01 — 09/03
+## Entrega 01 — 09/03/2026
 
 ### Histórias de Usuário
 
@@ -27,6 +27,39 @@ Protótipos de baixa fidelidade no Figma cobrindo 5 histórias:
 
 Apresentação do protótipo com áudio e legenda:
 [Assistir no YouTube](https://youtu.be/tkBOIxoyT6g)
+
+---
+
+## Entrega 02 - 30/03/2026
+
+### Implementação de 3 histórias iniciais (Sprint 1)
+1. Registrar entradas e saídas financeiras ✅
+2. Impor limites de gastos ✅
+3. Estabelecer objetivos/metas de consumo ✅
+
+### Issues/bug tracker (GitHub)
+Os problemas e sugestões foram classificados de acordo com categorias (bug, enhancement, etc) e milestones de acordo com cada sprint.
+
+#### Issues
+![Print da aba Issues](docs/imgs/print_issues.png)
+<!-- atualizar imagem -->
+
+#### Milestones
+![Print da aba Milestones na Sprint 1](docs/imgs/print_milestone_sprint1.png)
+<!-- atualizar imagem -->
+
+### Deploy
+[Link de acesso]() <!-- adicionar link -->
+
+[Vídeo do sistema funcionando em deploy]() <!-- adicionar link do youtube -->
+#### Como acessar:
+Explicar como acessar.
+
+### Programação em Par
+Explicar.
+
+### Próximos passos: Quadro da Sprint 2
+![Imagem do quadro da Sprint 2]() <!-- adicionar foto -->
 
 ## Equipe
 
