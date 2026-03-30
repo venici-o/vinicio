@@ -74,11 +74,12 @@ WSGI_APPLICATION = "project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-# Usa PostgreSQL se DATABASE_URL estiver disponível (produção), senão usa SQLite (desenvolvimento)
-if os.environ.get("DATABASE_URL"):
+# Usa PostgreSQL se DATABASE_URL ou AZURE_POSTGRESQL_CONNECTIONSTRING estiver disponível
+_db_url = os.environ.get("DATABASE_URL") or os.environ.get("AZURE_POSTGRESQL_CONNECTIONSTRING")
+if _db_url:
     DATABASES = {
         "default": dj_database_url.config(
-            default=os.environ.get("DATABASE_URL"),
+            default=_db_url,
             conn_max_age=600,
             conn_health_checks=True,
         )
