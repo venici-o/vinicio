@@ -56,7 +56,18 @@ Os problemas e sugestões foram classificados de acordo com categorias (bug, enh
 Explicar como acessar.
 
 ### Programação em Par
-Explicar.
+Dividimos o grupo em três duplas, com cada dupla responsável por uma história. Cada integrante da dupla escolheu uma área de atuação para focar (Front-end ou Back-end), mas independente da área escolhida, todos se ajudaram na revisão das funcionalidades implementadas.
+
+1. **Registrar entradas e saídas financeiras (Larissa e Gabriel)**
+
+    O desenvolvimento foi iniciado com a criação do modelo referente ao formulário de inserção de uma nova transação. A implementação ocorreu de forma colaborativa e alternada, à medida que cada etapa do código era concluída.
+
+    Inicialmente, Larissa ficou responsável pela construção do formulário em HTML e pela implementação das rotas do tipo POST. Em seguida, Gabriel deu continuidade ao trabalho, finalizando a rota do tipo GET e realizando as demais integrações necessárias com o banco de dados.
+
+    Posteriormente, os demais integrantes do grupo conduziram a revisão das alterações realizadas, promovendo ajustes relacionados à integração com outras partes do sistema, incluindo interfaces e rotas do projeto.
+  
+2. **Impor limites de gastos (Vinícius e Heitor)**
+3. **Estabelecer objetivos/metas de consumo (Ariel e Euclides)**
 
 ### Próximos passos: Quadro da Sprint 2
 ![Imagem do quadro da Sprint 2]() <!-- adicionar foto -->
