@@ -1,8 +1,20 @@
 from decimal import Decimal, InvalidOperation
+from datetime import date, timedelta
+from itertools import groupby
 
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 from .models import Transaction
 from django.db.models import Sum, Q
+
+MONTHS_PT = [
+    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
+]
+MONTHS_PT_FULL = [
+    'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+    'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro',
+]
 
 
 def _build_create_transaction_context(form_data=None, errors=None):
@@ -19,6 +31,7 @@ def _build_create_transaction_context(form_data=None, errors=None):
     }
 
 # exibir o formulário para criar uma nova transação
+@login_required
 def create_transactions(request):
     if request.method == 'POST':
         form_data = {
@@ -64,22 +77,67 @@ def create_transactions(request):
 def post_transaction(request):
     return create_transactions(request)
 
-# EXIBIR o extrato (entradas e saída) + o saldo 
+# EXIBIR o extrato (entradas e saída) + o saldo
+@login_required
 def get_transactions(request):
-    transactions = Transaction.objects.all().order_by('-date')
+    today = date.today()
+    try:
+        year = int(request.GET.get('year', today.year))
+        month = int(request.GET.get('month', today.month))
+    except (ValueError, TypeError):
+        year, month = today.year, today.month
+
+    if month < 1:
+        month, year = 12, year - 1
+    elif month > 12:
+        month, year = 1, year + 1
+
     # Cálculo do saldo total
-    totais = transactions.aggregate(
-        e=Sum('value', filter=Q(transaction_type='DEPOSIT')), 
-        #soma das entrada 
-        s=Sum('value', filter=Q(transaction_type='WITHDRAWAL')) 
-    )  
-    total_entradas = totais['e'] or 0
-    total_saidas = totais['s'] or 0
-    saldo = total_entradas - total_saidas
-    #saldo = (totais['e'] or 0) - (totais['s'] or 0)
+    totais = Transaction.objects.aggregate(
+        e=Sum('value', filter=Q(transaction_type='DEPOSIT')),
+        #soma das entrada
+        s=Sum('value', filter=Q(transaction_type='WITHDRAWAL'))
+    )
+    saldo = (totais['e'] or 0) - (totais['s'] or 0)
+
+    #Transações por mês
+    monthly_qs = Transaction.objects.filter(
+        date__year=year, date__month=month
+    ).order_by('-date', '-pk')
+
+    monthly_totals = monthly_qs.aggregate(
+        e=Sum('value', filter=Q(transaction_type='DEPOSIT')),
+        s=Sum('value', filter=Q(transaction_type='WITHDRAWAL'))
+    )
+    balanco_mensal = (monthly_totals['e'] or 0) - (monthly_totals['s'] or 0)
+
+    # Agrupamento por data
+    groups = []
+    yesterday = today - timedelta(days=1)
+    for date_key, items in groupby(monthly_qs, key=lambda t: t.date):
+        if date_key == today:
+            label = f"Hoje, {date_key.day} de {MONTHS_PT_FULL[date_key.month - 1]}"
+        elif date_key == yesterday:
+            label = f"Ontem, {date_key.day} de {MONTHS_PT_FULL[date_key.month - 1]}"
+        else:
+            label = f"{date_key.day} de {MONTHS_PT_FULL[date_key.month - 1]}"
+        groups.append({'label': label, 'transactions': list(items)})
+
+    # Navegação de meses
+    prev_month = month - 1 if month > 1 else 12
+    prev_year = year if month > 1 else year - 1
+    next_month = month + 1 if month < 12 else 1
+    next_year = year if month < 12 else year + 1
+
     return render(request, 'transactions/list_transactions.html', {
-        'transactions': transactions, 
-        'total_entradas': total_entradas, 
-        'total_saidas': total_saidas,     
-        'saldo': saldo                    
+        'groups': groups,
+        'saldo': saldo,
+        'balanco_mensal': balanco_mensal,
+        'balanco_positivo': balanco_mensal >= 0,
+        'month_name': MONTHS_PT[month - 1],
+        'year': year,
+        'prev_month': prev_month,
+        'prev_year': prev_year,
+        'next_month': next_month,
+        'next_year': next_year,
     })

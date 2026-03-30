@@ -1,11 +1,122 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <h1></h1>
-    <p></p>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Minha Carteira — Organizei{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/transactions/list_transactions.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="main-content">
+  <div class="date-nav glass">
+    <a href="?month={{ prev_month }}&year={{ prev_year }}" class="date-nav__btn" aria-label="Mês anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <span class="date-label">{{ month_name }} de {{ year }}</span>
+    <a href="?month={{ next_month }}&year={{ next_year }}" class="date-nav__btn" aria-label="Próximo mês">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="hero-card">
+    <div class="hero-stat">
+      <p class="stat-label">Saldo Atual</p>
+      <p class="stat-value stat-value--income">R$ {{ saldo|floatformat:2 }}</p>
+    </div>
+    <div class="hero-stat">
+      <p class="stat-label">Balanço Mensal</p>
+      <p class="stat-value {% if balanco_positivo %}stat-value--neutral{% else %}stat-value--expense{% endif %}">
+        R$ {{ balanco_mensal|floatformat:2 }}
+      </p>
+    </div>
+  </div>
+
+  <div class="tx-section-header">
+    <a href="{% url 'transactions:create_transaction' %}" class="button-glass">+ Nova Transação</a>
+  </div>
+
+  {% if groups %}
+  <div class="tx-groups">
+    {% for group in groups %}
+    <div class="tx-group">
+      <p class="tx-group__label">{{ group.label }}</p>
+      {% for tx in group.transactions %}
+      <div class="tx-item glass">
+        <div class="tx-item__icon {% if tx.transaction_type == 'WITHDRAWAL' %}tx-item__icon--expense{% else %}tx-item__icon--income{% endif %}">
+          {% if tx.transaction_type == 'WITHDRAWAL' %}
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="2" x2="2" y2="12"/>
+            <polyline points="9 12 2 12 2 5"/>
+          </svg>
+          {% else %}
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="2" y1="12" x2="12" y2="2"/>
+            <polyline points="5 2 12 2 12 9"/>
+          </svg>
+          {% endif %}
+        </div>
+        <div class="tx-item__info">
+          <p class="tx-item__name">{{ tx.name }}</p>
+          <div class="tx-item__meta">
+            <span>{{ tx.get_transaction_type_display }}</span>
+            <span class="tx-item__meta-dot">·</span>
+            <span>{{ tx.date|date:"d/m/Y" }}</span>
+          </div>
+        </div>
+        <p class="tx-item__amount {% if tx.transaction_type == 'WITHDRAWAL' %}tx-item__amount--expense{% else %}tx-item__amount--income{% endif %}">
+          {% if tx.transaction_type == 'WITHDRAWAL' %}-{% else %}+{% endif %}
+          R$ {{ tx.value|floatformat:2 }}
+        </p>
+
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <div class="tx-empty">
+    <p>Nenhuma transação em {{ month_name }} de {{ year }}.</p>
+    <a href="{% url 'transactions:create_transaction' %}" class="button-glass">Registrar primeira transação</a>
+  </div>
+  {% endif %}
+
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  const label   = document.querySelector('.date-label');
+  const btnPrev = document.querySelector('.date-nav__btn[aria-label="Mês anterior"]');
+  const btnNext = document.querySelector('.date-nav__btn[aria-label="Próximo mês"]');
+  const dir = sessionStorage.getItem('dateNavDir');
+
+  if (dir && label) {
+    sessionStorage.removeItem('dateNavDir');
+    label.classList.add(
+      dir === 'prev' ? 'date-label--enter-right' : 'date-label--enter-left'
+    );
+  }
+
+  function navigate(e, direction) {
+    e.preventDefault();
+    if (!label) return;
+    const href = e.currentTarget.getAttribute('href');
+    sessionStorage.setItem('dateNavDir', direction);
+    label.classList.add(
+      direction === 'prev' ? 'date-label--exit-right' : 'date-label--exit-left'
+    );
+    setTimeout(() => { window.location.href = href; }, 190);
+  }
+
+  btnPrev?.addEventListener('click', (e) => navigate(e, 'prev'));
+  btnNext?.addEventListener('click', (e) => navigate(e, 'next'));
+})();
+</script>
+{% endblock %}

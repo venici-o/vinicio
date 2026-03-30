@@ -4,7 +4,7 @@ from . import views
 app_name = "transactions"
 
 urlpatterns = [
-    path("", views.get_transactions, name="get_transactions"), #buscar as transações
+    path("", views.get_transactions, name="list"),  # buscar as transações
     path("create/", views.create_transactions, name="create_transaction"), #criar uma nova transação
     path('post/', views.post_transaction, name="post_transaction"), # enviar uma transação
     #path("<int:pk>/", views.transaction_detail, name="detail"), #detalhes da transação
