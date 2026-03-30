@@ -17,8 +17,8 @@ MONTHS_PT_FULL = [
 ]
 
 
-def _build_create_transaction_context(form_data=None, errors=None):
-    totais = Transaction.objects.aggregate(
+def _build_create_transaction_context(user, form_data=None, errors=None):
+    totais = Transaction.objects.filter(user=user).aggregate(
         e=Sum('value', filter=Q(transaction_type='DEPOSIT')),
         s=Sum('value', filter=Q(transaction_type='WITHDRAWAL'))
     )
@@ -61,16 +61,17 @@ def create_transactions(request):
 
         if not errors:
             Transaction.objects.create(
+                user=request.user,
                 name=form_data['name'],
                 transaction_type=form_data['transaction_type'],
                 value=parsed_value,
             )
-            return redirect('transactions:get_transactions')
+            return redirect('transactions:list')
 
-        context = _build_create_transaction_context(form_data=form_data, errors=errors)
+        context = _build_create_transaction_context(request.user, form_data=form_data, errors=errors)
         return render(request, 'transactions/create_transaction.html', context)
 
-    context = _build_create_transaction_context()
+    context = _build_create_transaction_context(request.user)
     return render(request, 'transactions/create_transaction.html', context)
 
 # verificar e enviar os dados do form da transação para o banco de dados (ainda não implementado)
@@ -93,7 +94,7 @@ def get_transactions(request):
         month, year = 1, year + 1
 
     # Cálculo do saldo total
-    totais = Transaction.objects.aggregate(
+    totais = Transaction.objects.filter(user=request.user).aggregate(
         e=Sum('value', filter=Q(transaction_type='DEPOSIT')),
         #soma das entrada
         s=Sum('value', filter=Q(transaction_type='WITHDRAWAL'))
@@ -102,7 +103,7 @@ def get_transactions(request):
 
     #Transações por mês
     monthly_qs = Transaction.objects.filter(
-        date__year=year, date__month=month
+        user=request.user, date__year=year, date__month=month
     ).order_by('-date', '-pk')
 
     monthly_totals = monthly_qs.aggregate(
