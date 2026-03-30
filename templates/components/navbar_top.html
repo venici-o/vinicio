@@ -7,7 +7,7 @@
     </a>
     <div class="main_section" aria-label="Navegação principal">
         <nav class="navbar__nav">
-        <a href="/" class="button-glass {% if request.resolver_match.namespace != 'goals' %}button-glass--active{% endif %}">
+        <a href="{% url 'transactions:list' %}" class="button-glass {% if request.resolver_match.namespace != 'goals' %}button-glass--active{% endif %}">
             Minha Carteira
         </a>
         <a href="{% url 'goals:list' %}" class="button-glass {% if request.resolver_match.namespace == 'goals' %}button-glass--active{% endif %}" {% if request.resolver_match.namespace == 'goals' %}aria-current="page"{% endif %}>
