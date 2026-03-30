@@ -234,8 +234,18 @@
 
 /* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 768px) {
+    .tx-section-header {
+        justify-content: center;
+    }
+
     .tx-group__label {
         font-size: 18px;
+    }
+
+    .button-glass {
+        display: flex;
+        margin: 0 auto 32px auto;
+        width: fit-content;
     }
 }
 
