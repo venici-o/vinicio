@@ -7,7 +7,7 @@ Aplicação web de gestão financeira pessoal: controle de gastos, investimentos
 
 ---
 
-## Entrega 01 — 09/03/2026
+## Entrega 01 ✅ — 09/03/2026
 
 ### Histórias de Usuário
 
@@ -31,53 +31,79 @@ Apresentação do protótipo com áudio e legenda:
 
 ---
 
-## Entrega 02 - 30/03/2026
+## Entrega 02 — 30/03/2026
 
-### Implementação de 3 histórias iniciais (Sprint 1)
-1. Registrar entradas e saídas financeiras ✅
-2. Impor limites de gastos ✅
-3. Estabelecer objetivos/metas de consumo ✅
+### Histórias Implementadas (Sprint 1)
 
-### Issues/bug tracker (GitHub)
-Os problemas e sugestões foram classificados de acordo com categorias (bug, enhancement, etc) e milestones de acordo com cada sprint.
+Foram selecionadas 3 histórias para implementação nesta entrega:
+
+1. Registrar entradas e saídas financeiras
+2. Impor limites de gastos
+3. Estabelecer objetivos/metas de consumo
+
+### JIRA — Sprint 02
+
+<!-- adicionar link da sprint 02 no JIRA -->
+[Acessar Sprint 02 no JIRA]()
+
+### Issue/Bug Tracker (GitHub)
+
+Os problemas e sugestões foram classificados de acordo com categorias (bug, enhancement, etc) e milestones por sprint.
 
 #### Issues
+
 ![Print da aba Issues](docs/imgs/print_issues.png)
-<!-- atualizar imagem -->
 
 #### Milestones
+
 ![Print da aba Milestones na Sprint 1](docs/imgs/print_milestone_sprint1.png)
-<!-- atualizar imagem -->
 
 ### Deploy
-[Link de acesso]() <!-- adicionar link -->
 
-[Vídeo do sistema funcionando em deploy]() <!-- adicionar link do youtube -->
-#### Como acessar:
-Explicar como acessar.
+**Link de acesso:** https://organizei-bac0fjgtbgajhabb.brazilsouth-01.azurewebsites.net
+
+#### Como acessar
+
+Para fins de teste, utilize as credenciais abaixo (sistema de registro ainda não implementado):
+
+| Campo | Valor |
+|-------|-------|
+| Usuário | `admin` |
+| Senha | `1234` |
+
+#### Screencast — Sistema em produção
+
+<!-- adicionar link do youtube — a URL do deploy deve aparecer durante todo o vídeo -->
+[Assistir no YouTube]()
 
 ### Programação em Par
-Dividimos o grupo em três duplas, com cada dupla responsável por uma história. Cada integrante da dupla escolheu uma área de atuação para focar (Front-end ou Back-end), mas independente da área escolhida, todos se ajudaram na revisão das funcionalidades implementadas.
 
-1. **Registrar entradas e saídas financeiras (Larissa e Gabriel)**
+Dividimos o grupo em três duplas, com cada dupla responsável por uma história. Cada integrante da dupla escolheu uma área de atuação (Front-end ou Back-end), mas todos se ajudaram na revisão das funcionalidades implementadas.
+
+1. **Registrar entradas e saídas financeiras — Larissa e Gabriel**
 
     O desenvolvimento foi iniciado com a criação do modelo referente ao formulário de inserção de uma nova transação. A implementação ocorreu de forma colaborativa e alternada, à medida que cada etapa do código era concluída.
 
     Inicialmente, Larissa ficou responsável pela construção do formulário em HTML e pela implementação das rotas do tipo POST. Em seguida, Gabriel deu continuidade ao trabalho, finalizando a rota do tipo GET e realizando as demais integrações necessárias com o banco de dados.
 
-    Posteriormente, os demais integrantes do grupo conduziram a revisão das alterações realizadas, promovendo ajustes relacionados à integração com outras partes do sistema, incluindo interfaces e rotas do projeto.
-  
-2. **Impor limites de gastos (Vinícius e Heitor)**
-3. **Estabelecer objetivos/metas de consumo (Ariel e Euclides)**
+    Posteriormente, os demais integrantes conduziram a revisão das alterações, promovendo ajustes relacionados à integração com outras partes do sistema, incluindo interfaces e rotas do projeto.
 
-    O desenvolvimento foi iniciado com base no modelo do formulário de estabelecer objetivo/meta de consumo. A implementação ocorreu de forma colaborativa e alternada: em cada entrega, um integrante ficara responsável pelo backend enquanto o outro cuidava do frontend.
-   
-    Nesta etapa, Euclides ficou encarregado da construção do app goals no Django, desenvolvendo os códigos do backend e integrando-os funcionalmente ao HTML. Em seguida, Ariel deu continuidade ao trabalho refinando a interface visual com CSS e reorganizando a estrutura do HTML, tornando a apresentação do app mais harmoniosa e coesa.
+2. **Impor limites de gastos — Vinícius e Heitor**
 
-    Por fim, os demais integrantes do grupo conduziram a revisão das alterações realizadas, promovendo ajustes de integração com outras partes do sistema, como interfaces e rotas do projeto.
+3. **Estabelecer objetivos/metas de consumo — Ariel e Euclides**
 
-### Próximos passos: Quadro da Sprint 2
-![Imagem do quadro da Sprint 2]() <!-- adicionar foto -->
+    O desenvolvimento foi iniciado com base no modelo do formulário de estabelecer objetivo/meta de consumo. A implementação ocorreu de forma colaborativa e alternada: em cada entrega, um integrante ficou responsável pelo backend enquanto o outro cuidava do frontend.
+
+    Euclides ficou encarregado da construção do app goals no Django, desenvolvendo os códigos do backend e integrando-os ao HTML. Em seguida, Ariel deu continuidade ao trabalho refinando a interface visual com CSS e reorganizando a estrutura do HTML.
+
+    Por fim, os demais integrantes conduziram a revisão das alterações, promovendo ajustes de integração com outras partes do sistema.
+
+### Quadro da Sprint 02
+
+<!-- adicionar print do quadro da sprint e do backlog no JIRA -->
+![Quadro da Sprint 02]()
+
+---
 
 ## Equipe
 
