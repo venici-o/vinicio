@@ -16,7 +16,7 @@ Documento com as 9 histórias de usuário e critérios de aceitação em BDD (Da
 
 ### JIRA — Sprint e Backlog
 
-![Backlog JIRA](https://i.imgur.com/gVEzgOt.png)
+![Backlog JIRA](https://i.imgur.com/mSE7g55.png)
 
 ### Protótipos Lo-Fi
 
