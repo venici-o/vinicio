@@ -70,6 +70,12 @@ Dividimos o grupo em três duplas, com cada dupla responsável por uma história
 2. **Impor limites de gastos (Vinícius e Heitor)**
 3. **Estabelecer objetivos/metas de consumo (Ariel e Euclides)**
 
+    O desenvolvimento foi iniciado com base no modelo do formulário de estabelecer objetivo/meta de consumo. A implementação ocorreu de forma colaborativa e alternada: em cada entrega, um integrante ficara responsável pelo backend enquanto o outro cuidava do frontend.
+   
+    Nesta etapa, Euclides ficou encarregado da construção do app goals no Django, desenvolvendo os códigos do backend e integrando-os funcionalmente ao HTML. Em seguida, Ariel deu continuidade ao trabalho refinando a interface visual com CSS e reorganizando a estrutura do HTML, tornando a apresentação do app mais harmoniosa e coesa.
+
+    Por fim, os demais integrantes do grupo conduziram a revisão das alterações realizadas, promovendo ajustes de integração com outras partes do sistema, como interfaces e rotas do projeto.
+
 ### Próximos passos: Quadro da Sprint 2
 ![Imagem do quadro da Sprint 2]() <!-- adicionar foto -->
 
