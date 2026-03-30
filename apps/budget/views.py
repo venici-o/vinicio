@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Budget
 from django.db.models import Sum
 from datetime import date
 from apps.transactions.models import Transaction
 from decimal import Decimal
 
+@login_required
 def set_budget(request):
     if request.method == 'POST':
         limit = request.POST.get('limit')
@@ -21,10 +23,11 @@ def set_budget(request):
                 defaults={'limit': limit}
             )
 
-            return redirect('budget')
+            return redirect('budget:list')
 
     return render(request, 'budget/set_budget.html')
 
+@login_required
 def budget_view(request):
     today = date.today()
 
@@ -37,7 +40,8 @@ def budget_view(request):
     total = Transaction.objects.filter(
         user=request.user,
         date__month=today.month,
-        date__year=today.year
+        date__year=today.year,
+        transaction_type='WITHDRAWAL'
     ).aggregate(total=Sum('value'))['total'] or 0
 
     percent = 0
