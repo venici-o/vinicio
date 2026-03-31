@@ -104,9 +104,11 @@ Dividimos o grupo em três duplas, com cada dupla responsável por uma história
     Por fim, os demais integrantes conduziram a revisão das alterações, promovendo ajustes de integração com outras partes do sistema.
 
 ### Quadro da Sprint 02
+#### Quadro Sprint 2 + Backlog Atualizado
+<img width="1986" height="946" alt="image" src="https://github.com/user-attachments/assets/d732909f-4623-4b19-8c7b-e2c896124302" />
 
-<!-- adicionar print do quadro da sprint e do backlog no JIRA -->
-![Quadro da Sprint 02]()
+#### Board da Sprint 2
+<img width="1975" height="345" alt="image" src="https://github.com/user-attachments/assets/bd3824a6-452b-4d01-9dd5-a65566b2cc71" />
 
 ---
 
