@@ -79,7 +79,7 @@ Para fins de teste, utilize as credenciais abaixo (sistema de registro ainda nã
 #### Screencast — Sistema em produção
 
 <!-- adicionar link do youtube — a URL do deploy deve aparecer durante todo o vídeo -->
-[Assistir no YouTube]()
+[Assistir no YouTube](https://youtu.be/PJ50jg6RfzQ)
 
 ### Programação em Par
 
