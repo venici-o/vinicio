@@ -95,6 +95,12 @@ Dividimos o grupo em três duplas, com cada dupla responsável por uma história
 
 2. **Impor limites de gastos — Vinícius e Heitor**
 
+    O desenvolvimento foi iniciado com a implementação de um app budget para a definição de limites de gastos, com data específica e tracking em tempo real do fluxo monetário das contas registradas. A implementação ocorreu de forma colaborativa e alternada, consistindo na intercalação de funções e participação efetiva da dupla na construção do código.
+
+    Com a implementação do app e a definição de funcionalidades sendo feito por Heitor, houve a colaboração da dupla para o estabelecimento de um sistema efetivo, funcional e agradável, contando com implementações de requerimento de login, rota de URL e aprimoramento do front-end por Vinicius.   
+
+    Por fim, os demais integrantes conduziram a revisão das alterações, promovendo ajustes de integração com outras partes do sistema.
+
 3. **Estabelecer objetivos/metas de consumo — Ariel e Euclides**
 
     O desenvolvimento foi iniciado com base no modelo do formulário de estabelecer objetivo/meta de consumo. A implementação ocorreu de forma colaborativa e alternada: em cada entrega, um integrante ficou responsável pelo backend enquanto o outro cuidava do frontend.
