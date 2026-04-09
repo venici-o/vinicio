@@ -5,9 +5,11 @@ Organizei
 </h1>
 <div align='center'>
 Aplicação web de gestão financeira pessoal: controle de gastos, investimentos, metas e assinaturas.
-
+<br><br>
+    
+**Disciplina:** Fundamentos de Desenvolvimento de Software — Turma 2B — 2026.1 \
+**Link do deploy:**  https://organizei-bac0fjgtbgajhabb.brazilsouth-01.azurewebsites.net \
 **Repositório:** [github.com/DoctahW/organizei](https://github.com/DoctahW/organizei)
-**Disciplina:** Fundamentos de Desenvolvimento de Software — Turma 2B — 2026.1
 </div>
 
 ---
