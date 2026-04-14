@@ -1,1 +1,1 @@
-web: gunicorn project.wsgi --bind 0.0.0.0:8000 --log-file -
+web: gunicorn project.wsgi --bind 127.0.0.1:8000 --log-file -
