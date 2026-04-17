@@ -1,13 +1,39 @@
-name: Deploy to AWS Elastic Beanstalk
+name: CI/CD
 
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Run tests
+        run: python manage.py test --verbosity=2
+
+      - name: Check for missing migrations
+        run: python manage.py makemigrations --check --dry-run
+
   deploy:
     runs-on: ubuntu-latest
+    needs: [test]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     environment: production
     permissions:
       id-token: write
