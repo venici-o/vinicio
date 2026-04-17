@@ -28,7 +28,7 @@ jobs:
         run: python manage.py test --verbosity=2
 
       - name: Check for missing migrations
-        run: python manage.py migrate --check
+        run: python manage.py makemigrations --check --dry-run
 
   deploy:
     runs-on: ubuntu-latest
