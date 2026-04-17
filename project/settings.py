@@ -23,6 +23,16 @@ DEBUG = os.environ.get("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
+# Allow ELB health checker to reach the instance via its internal IP
+try:
+    import urllib.request
+    EC2_INTERNAL_IP = urllib.request.urlopen(
+        "http://169.254.169.254/latest/meta-data/local-ipv4", timeout=0.1
+    ).read().decode()
+    ALLOWED_HOSTS.append(EC2_INTERNAL_IP)
+except Exception:
+    pass
+
 CSRF_TRUSTED_ORIGINS = os.environ.get(
     "CSRF_TRUSTED_ORIGINS", "http://localhost,http://127.0.0.1"
 ).split(",")
