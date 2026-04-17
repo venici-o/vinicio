@@ -34,13 +34,16 @@
         {% if errors.transaction_type %}<p>{{ errors.transaction_type }}</p>{% endif %}
 
         <section class="value_container">
-            <input type="number" name="value" placeholder="Valor" value="{{ form_data.value|default:'' }}" min="0.01"
-                step="0.01" required>
+            <input type="text" inputmode="decimal" id="value-input" name="value" placeholder="0,00" value="{{ form_data.value|default:'' }}" required>
             {% if errors.value %}<p>{{ errors.value }}</p>{% endif %}
             <p>Valor na conta: R$ {% if account_balance %}{{ account_balance|floatformat:2 }}{% else %}0.00{% endif %}
-            </p> <!--mostrar saldo atual -->
+            </p>
         </section>
         <button type="submit" class="button-glass">Criar Transação</button>
     </form>
 </section>
-{% endblock%}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/transactions/create_transaction.js' %}"></script>
+{% endblock %}
