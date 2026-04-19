@@ -28,7 +28,7 @@ class Transaction(models.Model):
         verbose_name="Tipo de Transação"
     )
     category = models.CharField(
-        max_lenght = 20,
+        max_length = 20,
         choices=CATEGORY_CHOICES,
         default = 'OTHER',
         verbose_name = "Categoria"
