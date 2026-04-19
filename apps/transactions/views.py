@@ -28,6 +28,7 @@ def _build_create_transaction_context(user, form_data=None, errors=None):
         'errors': errors or {},
         'account_balance': account_balance,
         'transaction_type_choices': Transaction.TYPE_CHOICES,
+        'category_choices': Transaction.CATEGORY_CHOICES,
     }
 
 # exibir o formulário para criar uma nova transação
@@ -38,6 +39,7 @@ def create_transactions(request):
             'name': request.POST.get('name', '').strip(),
             'transaction_type': request.POST.get('transaction_type', '').strip(),
             'value': request.POST.get('value', '').strip(),
+            'category': request.POST.get('category', '').strip(),
         }
         errors = {}
 
@@ -49,6 +51,10 @@ def create_transactions(request):
         allowed_types = {choice[0] for choice in Transaction.TYPE_CHOICES}
         if form_data['transaction_type'] not in allowed_types:
             errors['transaction_type'] = 'Selecione um tipo de transação válido.'
+
+        allowed_categories = {choice[0] for choice in Transaction.CATEGORY_CHOICES}
+        if form_data['category'] not in allowed_categories:
+            errors['category'] = 'Selecione uma categoria válida.'
 
         raw_value = form_data['value'].replace(',', '.')
         try:
@@ -65,6 +71,7 @@ def create_transactions(request):
                 name=form_data['name'],
                 transaction_type=form_data['transaction_type'],
                 value=parsed_value,
+                category=form_data['category'],
             )
             return redirect('transactions:list')
 
