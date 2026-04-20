@@ -79,6 +79,7 @@ body {
     gap: 22px;
 }
 
+/* card centralizado de informações principais */
 .hero-card {
     display: flex;
     align-items: center;

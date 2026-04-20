@@ -22,24 +22,65 @@
     </header>
     <form method="post" action="{% url 'transactions:create_transaction' %}">
         {% csrf_token %}
-        <select name="transaction_type" required>
+        <select name="transaction_type" required class="transaction_type_select">
             <option value="">Selecione o tipo</option>
             {% for value, label in transaction_type_choices %}
-            <option value="{{ value }}" {% if form_data.transaction_type == value %}selected{% endif %}>{{ label }}</option>
+            <option value="{{ value }}" {% if form_data.transaction_type == value %}selected{% endif %}>{{ label }}
+            </option>
             {% endfor %}
         </select>
-        <input type="text" name="name" placeholder="Nome da Transação" value="{{ form_data.name|default:'' }}" required>
+        <input type="text" name="name" placeholder="Nome da Transação" value="{{ form_data.name|default:'' }}" required
+            class="name_input input">
         {% if errors.name %}<p>{{ errors.name }}</p>{% endif %}
 
         {% if errors.transaction_type %}<p>{{ errors.transaction_type }}</p>{% endif %}
 
         <section class="value_container">
-            <input type="text" inputmode="decimal" id="value-input" name="value" placeholder="0,00" value="{{ form_data.value|default:'' }}" required>
+            <input type="text" inputmode="decimal" id="value-input" name="value" placeholder="0,00"
+                value="{{ form_data.value|default:'' }}" required class="input">
             {% if errors.value %}<p>{{ errors.value }}</p>{% endif %}
             <p>Valor na conta: R$ {% if account_balance %}{{ account_balance|floatformat:2 }}{% else %}0.00{% endif %}
             </p>
         </section>
-        <button type="submit" class="button-glass">Criar Transação</button>
+
+        <!-- modal selecionar categoria -->
+
+        <input type="hidden" name="category" id="selected-category" value="{{ form_data.category|default:'' }}"
+            class="input">
+
+        <style>
+            
+        </style>
+        
+        <section class="category_btn_container input" onclick="openCategoryModal()">
+            <button class="category-option" type="button" id="category-btn">
+                <p>Selecionar categoria</p><span>></span>
+            </button>
+        </section>
+
+        <section class="category_modal_container" id="category-modal" style="display: none;">
+            {% for value, label in category_choices %}
+            <div class="category-option modal-option input" onclick="selectCategory('{{ value }}', '{{ label }}')">
+                <!-- <span>{{ category.icon }}</span> -->
+                <p>{{ label }}</p>
+             </div>
+             {%endfor %}
+            <button id="new-category-btn" class="button-glass" onclick="openCreateCategory()">
+                <p>Adicionar Nova Categoria</p>
+            </button>
+        </section>
+
+        <!-- modal add categoria -->
+         <!-- adicionar no backend função separada -->
+         <section class="add-new-category-container" style="display: none;">
+                <input type="text" name="new_category_name" id="new-category-name" placeholder="Nome da nova categoria"
+                    class="input">
+                <button id="save-new-category-btn" class="button-glass" onclick="saveNewCategory()">
+                    <p>Salvar Categoria</p>
+                </button>
+         </section>
+
+        <button type="submit" class="button-glass" id="sent-transaction-btn">Criar Transação</button>
     </form>
 </section>
 {% endblock %}
