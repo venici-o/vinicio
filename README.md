@@ -8,7 +8,7 @@ Aplicação web de gestão financeira pessoal: controle de gastos, investimentos
 <br><br>
     
 **Disciplina:** Fundamentos de Desenvolvimento de Software — Turma 2B — 2026.1 \
-**Link do deploy:**  https://organizei-bac0fjgtbgajhabb.brazilsouth-01.azurewebsites.net \
+**Link do deploy:**  https://organizei.lat \
 **Repositório:** [github.com/DoctahW/organizei](https://github.com/DoctahW/organizei)
 </div>
 
@@ -67,7 +67,7 @@ Os problemas e sugestões foram classificados de acordo com categorias (bug, enh
 
 ### Deploy
 
-**Link de acesso:** https://organizei-bac0fjgtbgajhabb.brazilsouth-01.azurewebsites.net
+**Link de acesso:** https://organizei.lat
 
 #### Como acessar
 
