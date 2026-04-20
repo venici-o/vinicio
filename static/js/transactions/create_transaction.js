@@ -22,6 +22,8 @@ const categoryBtnContainer = document.querySelector('.category_btn_container');
 const valueContainer = document.querySelector('.value_container');
 const nameInput = document.querySelector('.name_input');
 const transactionTypeSelect = document.querySelector('.transaction_type_select');
+const sentTransactionBtn = document.querySelector('#sent-transaction-btn');
+const addNewCategoryContainer = document.querySelector('.add-new-category-container');
 
 function openCategoryModal() {
     if (modal) {
@@ -30,14 +32,17 @@ function openCategoryModal() {
         valueContainer ? valueContainer.style.display = 'none' : null;
         nameInput ? nameInput.style.display = 'none' : null;
         transactionTypeSelect ? transactionTypeSelect.style.display = 'none' : null;
+        sentTransactionBtn ? sentTransactionBtn.style.display = 'none' : null;
+        addNewCategoryContainer ? addNewCategoryContainer.style.display = 'none' : null;
     }
 
     if (pageTitle) {
         pageTitle.textContent = 'Selecionar Categoria';
     }
 
-    const backBtn = document.getElementById('back-btn');
+    const backBtn = document.getElementById('back-button-link');
     if (backBtn) {
+        backBtn.setAttribute('href', '#'); //corrigir isso depois
         backBtn.onclick = function () {
             modal.style.display = 'none';
             pageTitle.textContent = 'Criar Transação';
@@ -45,6 +50,8 @@ function openCategoryModal() {
             valueContainer ? valueContainer.style.display = 'block' : null;
             nameInput ? nameInput.style.display = 'block' : null;
             transactionTypeSelect ? transactionTypeSelect.style.display = 'block' : null;
+            sentTransactionBtn ? sentTransactionBtn.style.display = 'block' : null;
+            addNewCategoryContainer ? addNewCategoryContainer.style.display = 'none' : null;
         };
     }
 
@@ -58,6 +65,8 @@ function selectCategory(categoryValue, categoryLabel) {
         valueContainer ? valueContainer.style.display = 'block' : null;
         nameInput ? nameInput.style.display = 'block' : null;
         transactionTypeSelect ? transactionTypeSelect.style.display = 'block' : null;
+        sentTransactionBtn ? sentTransactionBtn.style.display = 'block' : null;
+        addNewCategoryContainer ? addNewCategoryContainer.style.display = 'none' : null;
     }
 
     const hiddenCategoryInput = document.getElementById('selected-category');
@@ -71,3 +80,15 @@ function selectCategory(categoryValue, categoryLabel) {
     }
 }
 
+
+function openCreateCategory() {
+    if (addNewCategoryContainer) {
+        addNewCategoryContainer.style.display = 'block';
+
+        if (modal) {
+            modal.style.display = 'none';
+            
+        }
+    }
+    //add o restante
+}

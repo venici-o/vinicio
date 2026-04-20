@@ -29,7 +29,8 @@
             </option>
             {% endfor %}
         </select>
-        <input type="text" name="name" placeholder="Nome da Transação" value="{{ form_data.name|default:'' }}" required class="name_input input">
+        <input type="text" name="name" placeholder="Nome da Transação" value="{{ form_data.name|default:'' }}" required
+            class="name_input input">
         {% if errors.name %}<p>{{ errors.name }}</p>{% endif %}
 
         {% if errors.transaction_type %}<p>{{ errors.transaction_type }}</p>{% endif %}
@@ -42,64 +43,84 @@
             </p>
         </section>
 
-        <input type="hidden" name="category" id="selected-category" value="{{ form_data.category|default:'' }}" class="input">
+        <!-- modal selecionar categoria -->
 
-<style>
-    .input {
-    background-color: #222;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    width: 100%;
-    color: #ffffff;
-    outline: none;
-}
-    .category_btn_container{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.category_btn_container .category-option{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.4);
-    justify-content: center;
-}
-.category-option p{
-    margin: 0;
-    padding: 0;
-}
-.category_modal_container{
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-.modal-option{
-    margin-bottom: 15px;
-}
+        <input type="hidden" name="category" id="selected-category" value="{{ form_data.category|default:'' }}"
+            class="input">
 
-</style>
+        <style>
+            .input {
+                background-color: #222;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 15px;
+                width: 100%;
+                color: #ffffff;
+                outline: none;
+            }
+
+            .category_btn_container {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .category_btn_container .category-option {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                background-color: transparent;
+                outline: none;
+                border: none;
+                color: rgba(255, 255, 255, 0.4);
+                justify-content: center;
+            }
+
+            .category-option p {
+                margin: 0;
+                padding: 0;
+            }
+
+            .category_modal_container {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .modal-option {
+                margin-bottom: 15px;
+            }
+        </style>
+        
         <section class="category_btn_container input" onclick="openCategoryModal()">
-            <button class="category-option" type="button" id="category-btn"><p>Selecionar categoria</p><span>></span></button>
+            <button class="category-option" type="button" id="category-btn">
+                <p>Selecionar categoria</p><span>></span>
+            </button>
         </section>
 
         <section class="category_modal_container" id="category-modal" style="display: none;">
-             {% for value, label in category_choices %}
-             <div class="category-option modal-option input" onclick="selectCategory('{{ value }}', '{{ label }}')">
+            {% for value, label in category_choices %}
+            <div class="category-option modal-option input" onclick="selectCategory('{{ value }}', '{{ label }}')">
                 <!-- <span>{{ category.icon }}</span> -->
                 <p>{{ label }}</p>
              </div>
              {%endfor %}
-            <button id="new-category-btn">
-                <p>Adicionar nova Categoria</p><span>+</span>
+            <button id="new-category-btn" class="button-glass" onclick="openCreateCategory()">
+                <p>Adicionar Nova Categoria</p>
             </button>
         </section>
 
-        <button type="submit" class="button-glass">Criar Transação</button>
+        <!-- modal add categoria -->
+         <!-- adicionar no backend função separada -->
+         <section class="add-new-category-container" style="display: none;">
+                <input type="text" name="new_category_name" id="new-category-name" placeholder="Nome da nova categoria"
+                    class="input">
+                <button id="save-new-category-btn" class="button-glass" onclick="saveNewCategory()">
+                    <p>Salvar Categoria</p>
+                </button>
+         </section>
+
+        <button type="submit" class="button-glass" id="sent-transaction-btn">Criar Transação</button>
     </form>
 </section>
 {% endblock %}
