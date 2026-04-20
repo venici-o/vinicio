@@ -4,7 +4,7 @@ from itertools import groupby
 
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .models import Transaction
+from .models import Transaction, Category
 from django.db.models import Sum, Q
 
 MONTHS_PT = [
@@ -15,6 +15,10 @@ MONTHS_PT_FULL = [
     'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
     'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro',
 ]
+
+
+def _get_categories_for_user(user):
+    return Category.objects.filter(Q(user=None) | Q(user=user)).order_by('name')
 
 
 def _build_create_transaction_context(user, form_data=None, errors=None):
@@ -28,8 +32,9 @@ def _build_create_transaction_context(user, form_data=None, errors=None):
         'errors': errors or {},
         'account_balance': account_balance,
         'transaction_type_choices': Transaction.TYPE_CHOICES,
-        'category_choices': Transaction.CATEGORY_CHOICES,
+        'categories': _get_categories_for_user(user),
     }
+
 
 # exibir o formulário para criar uma nova transação
 @login_required
@@ -39,7 +44,7 @@ def create_transactions(request):
             'name': request.POST.get('name', '').strip(),
             'transaction_type': request.POST.get('transaction_type', '').strip(),
             'value': request.POST.get('value', '').strip(),
-            'category': request.POST.get('category', '').strip(),
+            'category_id': request.POST.get('category_id', '').strip(),
         }
         errors = {}
 
@@ -52,9 +57,12 @@ def create_transactions(request):
         if form_data['transaction_type'] not in allowed_types:
             errors['transaction_type'] = 'Selecione um tipo de transação válido.'
 
-        allowed_categories = {choice[0] for choice in Transaction.CATEGORY_CHOICES}
-        if form_data['category'] not in allowed_categories:
-            errors['category'] = 'Selecione uma categoria válida.'
+        category = None
+        if form_data['category_id']:
+            try:
+                category = _get_categories_for_user(request.user).get(pk=form_data['category_id'])
+            except Category.DoesNotExist:
+                errors['category_id'] = 'Selecione uma categoria válida.'
 
         raw_value = form_data['value'].replace(',', '.')
         try:
@@ -71,7 +79,7 @@ def create_transactions(request):
                 name=form_data['name'],
                 transaction_type=form_data['transaction_type'],
                 value=parsed_value,
-                category=form_data['category'],
+                category=category,
             )
             return redirect('transactions:list')
 
@@ -81,9 +89,11 @@ def create_transactions(request):
     context = _build_create_transaction_context(request.user)
     return render(request, 'transactions/create_transaction.html', context)
 
+
 # verificar e enviar os dados do form da transação para o banco de dados (ainda não implementado)
 def post_transaction(request):
     return create_transactions(request)
+
 
 # EXIBIR o extrato (entradas e saída) + o saldo
 @login_required
@@ -103,12 +113,11 @@ def get_transactions(request):
     # Cálculo do saldo total
     totais = Transaction.objects.filter(user=request.user).aggregate(
         e=Sum('value', filter=Q(transaction_type='DEPOSIT')),
-        #soma das entrada
         s=Sum('value', filter=Q(transaction_type='WITHDRAWAL'))
     )
     saldo = (totais['e'] or 0) - (totais['s'] or 0)
 
-    #Transações por mês
+    # Transações por mês
     monthly_qs = Transaction.objects.filter(
         user=request.user, date__year=year, date__month=month
     ).order_by('-date', '-pk')
