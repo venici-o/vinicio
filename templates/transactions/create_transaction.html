@@ -22,42 +22,79 @@
     </header>
     <form method="post" action="{% url 'transactions:create_transaction' %}">
         {% csrf_token %}
-        <select name="transaction_type" required>
+        <select name="transaction_type" required class="transaction_type_select">
             <option value="">Selecione o tipo</option>
             {% for value, label in transaction_type_choices %}
             <option value="{{ value }}" {% if form_data.transaction_type == value %}selected{% endif %}>{{ label }}
             </option>
             {% endfor %}
         </select>
-        <input type="text" name="name" placeholder="Nome da Transação" value="{{ form_data.name|default:'' }}" required>
+        <input type="text" name="name" placeholder="Nome da Transação" value="{{ form_data.name|default:'' }}" required class="name_input input">
         {% if errors.name %}<p>{{ errors.name }}</p>{% endif %}
 
         {% if errors.transaction_type %}<p>{{ errors.transaction_type }}</p>{% endif %}
 
         <section class="value_container">
             <input type="text" inputmode="decimal" id="value-input" name="value" placeholder="0,00"
-                value="{{ form_data.value|default:'' }}" required>
+                value="{{ form_data.value|default:'' }}" required class="input">
             {% if errors.value %}<p>{{ errors.value }}</p>{% endif %}
             <p>Valor na conta: R$ {% if account_balance %}{{ account_balance|floatformat:2 }}{% else %}0.00{% endif %}
             </p>
         </section>
 
-        <input type="hidden" name="category" id="selected-category" value="{{ form_data.category|default:'' }}">
+        <input type="hidden" name="category" id="selected-category" value="{{ form_data.category|default:'' }}" class="input">
 
-        <section class="category_btn_container" >
-            <button onclick="openCategoryModal()" class="category-option" type="button" id="category-btn"><p>Selecionar categoria</p><span>></span></button>
+<style>
+    .input {
+    background-color: #222;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    width: 100%;
+    color: #ffffff;
+    outline: none;
+}
+    .category_btn_container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.category_btn_container .category-option{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    justify-content: center;
+}
+.category-option p{
+    margin: 0;
+    padding: 0;
+}
+.category_modal_container{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.modal-option{
+    margin-bottom: 15px;
+}
+
+</style>
+        <section class="category_btn_container input" onclick="openCategoryModal()">
+            <button class="category-option" type="button" id="category-btn"><p>Selecionar categoria</p><span>></span></button>
         </section>
 
         <section class="category_modal_container" id="category-modal" style="display: none;">
-            <!-- mudar h2 para "Selecionar Categoria" no js -->
-             <!-- mudar seta voltar para voltar para tela de criar transação -->
              {% for value, label in category_choices %}
-             <div class="category-option" onclick="selectCategory('{{ value }}', '{{ label }}')">
+             <div class="category-option modal-option input" onclick="selectCategory('{{ value }}', '{{ label }}')">
                 <!-- <span>{{ category.icon }}</span> -->
                 <p>{{ label }}</p>
              </div>
              {%endfor %}
-            <button>
+            <button id="new-category-btn">
                 <p>Adicionar nova Categoria</p><span>+</span>
             </button>
         </section>

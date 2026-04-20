@@ -18,10 +18,18 @@
 
 const modal = document.getElementById('category-modal');
 const pageTitle = document.querySelector('h2');
+const categoryBtnContainer = document.querySelector('.category_btn_container');
+const valueContainer = document.querySelector('.value_container');
+const nameInput = document.querySelector('.name_input');
+const transactionTypeSelect = document.querySelector('.transaction_type_select');
 
 function openCategoryModal() {
     if (modal) {
         modal.style.display = 'block';
+        categoryBtnContainer ? categoryBtnContainer.style.display = 'none' : null;
+        valueContainer ? valueContainer.style.display = 'none' : null;
+        nameInput ? nameInput.style.display = 'none' : null;
+        transactionTypeSelect ? transactionTypeSelect.style.display = 'none' : null;
     }
 
     if (pageTitle) {
@@ -32,9 +40,11 @@ function openCategoryModal() {
     if (backBtn) {
         backBtn.onclick = function () {
             modal.style.display = 'none';
-            console.log('botao clicado')
             pageTitle.textContent = 'Criar Transação';
-            console.log(pageTitle.textContent)
+            categoryBtnContainer ? categoryBtnContainer.style.display = 'flex' : null;
+            valueContainer ? valueContainer.style.display = 'block' : null;
+            nameInput ? nameInput.style.display = 'block' : null;
+            transactionTypeSelect ? transactionTypeSelect.style.display = 'block' : null;
         };
     }
 
@@ -44,6 +54,10 @@ function selectCategory(categoryValue, categoryLabel) {
     if (modal) {
         modal.style.display = 'none';
         pageTitle.textContent = 'Criar Transação';
+        categoryBtnContainer ? categoryBtnContainer.style.display = 'flex' : null;
+        valueContainer ? valueContainer.style.display = 'block' : null;
+        nameInput ? nameInput.style.display = 'block' : null;
+        transactionTypeSelect ? transactionTypeSelect.style.display = 'block' : null;
     }
 
     const hiddenCategoryInput = document.getElementById('selected-category');
@@ -53,7 +67,7 @@ function selectCategory(categoryValue, categoryLabel) {
 
     const categoryBtn = document.getElementById('category-btn');
     if (categoryBtn) {
-        categoryBtn.innerHTML = `<p>${categoryLabel}</p>`;
+        categoryBtn.innerHTML = `<p>${categoryLabel}</p><span class="edit-icon">></span>`;
     }
 }
 
