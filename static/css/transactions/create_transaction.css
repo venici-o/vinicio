@@ -39,16 +39,19 @@ h2 {
     height: 28px;
     flex-shrink: 0;
 }
-.back_button svg{
+
+.back_button svg {
     color: rgba(214, 214, 214, 0.5);
     text-decoration: none;
     transition: color 0.2s;
     width: 30px;
     height: 30px;
 }
-.back_button:hover{
+
+.back_button:hover {
     color: #aaa;
 }
+
 form {
     display: flex;
     flex-direction: column;
@@ -76,7 +79,8 @@ select {
     color: #ffffff;
     outline: none;
 }
-input::selection{
+
+input::selection {
     background-color: #444;
 
 }
@@ -91,19 +95,62 @@ p {
     line-height: 1.4;
 }
 
-/* style para categorias na tag style por enquanto*/
+.input {
+    background-color: #222;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    width: 100%;
+    color: #ffffff;
+    outline: none;
+}
+
+.category_btn_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category_btn_container .category-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    justify-content: center;
+}
+
+.category-option p {
+    margin: 0;
+    padding: 0;
+}
+
+.category_modal_container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.modal-option {
+    margin-bottom: 15px;
+}
 
 
 @media (max-width: 768px) {
     .new_transaction {
         padding: 20px;
     }
-    .new_transaction header{
+
+    .new_transaction header {
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
+        padding: 0;
     }
-    form{
+
+    form {
         padding: 20px;
     }
 }
