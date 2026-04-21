@@ -38,7 +38,7 @@ Apresentação do protótipo com áudio e legenda:
 
 ---
 
-## Entrega 02 — 30/03/2026
+## Entrega 02 ✅ — 30/03/2026
 
 ### Histórias Implementadas (Sprint 1)
 
@@ -117,6 +117,18 @@ Dividimos o grupo em três duplas, com cada dupla responsável por uma história
 
 #### Board da Sprint 2
 <img width="1975" height="345" alt="image" src="https://github.com/user-attachments/assets/bd3824a6-452b-4d01-9dd5-a65566b2cc71" />
+
+---
+
+## Entrega 03 — 30/03/2026
+### Histórias Implementadas (Sprint 2)
+
+Foram selecionadas 4 histórias para implementação nesta entrega:
+
+1. Cadastrar e gerenciar contas bancárias
+2. Visualizar saldo das contas bancárias
+3. Visualizar painel financeiro (dashboard)
+4. Categorizar transações
 
 ---
 
