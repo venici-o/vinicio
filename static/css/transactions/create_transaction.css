@@ -78,16 +78,6 @@ p {
     line-height: 1.4;
 }
 
-.input {
-    background-color: #222;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    width: 100%;
-    color: #ffffff;
-    outline: none;
-}
-
 .category_btn_container {
     display: flex;
     align-items: center;

@@ -37,7 +37,7 @@
 
         <section class="value_container">
             <input type="text" inputmode="decimal" id="value-input" name="value" placeholder="0,00"
-                value="{{ form_data.value|default:'' }}" required class="input">
+                value="{{ form_data.value|default:'' }}" required class="input-box">
             {% if errors.value %}<p>{{ errors.value }}</p>{% endif %}
             <p>Valor na conta: R$ {% if account_balance %}{{ account_balance|floatformat:2 }}{% else %}0.00{% endif %}
             </p>
