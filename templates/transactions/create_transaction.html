@@ -30,7 +30,7 @@
             {% endfor %}
         </select>
         <input type="text" name="name" placeholder="Nome da Transação" value="{{ form_data.name|default:'' }}" required
-            class="name_input input">
+            class="name_input input-box">
         {% if errors.name %}<p>{{ errors.name }}</p>{% endif %}
 
         {% if errors.transaction_type %}<p>{{ errors.transaction_type }}</p>{% endif %}
@@ -46,10 +46,10 @@
         <!-- modal selecionar categoria -->
 
         <input type="hidden" name="category_id" id="selected-category" value="{{ form_data.category_id|default:'' }}"
-            class="input">
+            class="input-box">
 
         
-        <section class="category_btn_container input" onclick="openCategoryModal()">
+        <section class="category_btn_container input-box" onclick="openCategoryModal()">
             <button class="category-option" type="button" id="category-btn">
                 <p>Selecionar categoria</p><span>></span>
             </button>
@@ -57,7 +57,7 @@
 
         <section class="category_modal_container" id="category-modal" style="display: none;">
             {% for category in categories %}
-            <div class="category-option modal-option input" onclick="selectCategory('{{ category.id }}', '{{ category.name }}')">
+            <div class="category-option modal-option input-box" onclick="selectCategory('{{ category.id }}', '{{ category.name }}')">
                 <!-- <span>{{ category.icon }}</span> -->
                 <p>{{ category.name }}</p>
              </div>

@@ -1,11 +1,4 @@
-/* @import url("../main.css"); */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter", system-ui, sans-serif;
-}
+@import url("../main.css");
 
 .new_transaction {
     width: 100%;
@@ -68,16 +61,6 @@ select {
     border-radius: 15px;
     width: 100%;
     margin-bottom: 30px;
-}
-
-.input {
-    background-color: #222;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    width: 100%;
-    color: #ffffff;
-    outline: none;
 }
 
 input::selection {
