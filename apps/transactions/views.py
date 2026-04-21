@@ -38,6 +38,10 @@ def _build_create_transaction_context(user, form_data=None, errors=None):
 
 # exibir o formulário para criar uma nova transação
 @login_required
+# to do: criar uma funcao de adicionar uma nova categoria
+def create_category(request):
+    return render(request, 'transactions/create_category.html')
+
 def create_transactions(request):
     if request.method == 'POST':
         form_data = {

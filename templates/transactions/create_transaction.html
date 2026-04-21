@@ -11,7 +11,7 @@
 <section class="new_transaction ">
     <header>
         <span class="back_button">
-            <a class="back_button-link" href="{% url 'transactions:list' %}">
+            <a class="back_button-link" id="back_button-link" href="{% url 'transactions:list' %}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
                     <polyline points="15 18 9 12 15 6" />
@@ -45,12 +45,9 @@
 
         <!-- modal selecionar categoria -->
 
-        <input type="hidden" name="category" id="selected-category" value="{{ form_data.category|default:'' }}"
+        <input type="hidden" name="category_id" id="selected-category" value="{{ form_data.category_id|default:'' }}"
             class="input">
 
-        <style>
-            
-        </style>
         
         <section class="category_btn_container input" onclick="openCategoryModal()">
             <button class="category-option" type="button" id="category-btn">
@@ -59,26 +56,16 @@
         </section>
 
         <section class="category_modal_container" id="category-modal" style="display: none;">
-            {% for value, label in category_choices %}
-            <div class="category-option modal-option input" onclick="selectCategory('{{ value }}', '{{ label }}')">
+            {% for category in categories %}
+            <div class="category-option modal-option input" onclick="selectCategory('{{ category.id }}', '{{ category.name }}')">
                 <!-- <span>{{ category.icon }}</span> -->
-                <p>{{ label }}</p>
+                <p>{{ category.name }}</p>
              </div>
              {%endfor %}
-            <button id="new-category-btn" class="button-glass" onclick="openCreateCategory()">
+            <a id="new-category-btn" class="button-glass" href='{% url 'transactions:create_category' %}'>
                 <p>Adicionar Nova Categoria</p>
-            </button>
+            </a>
         </section>
-
-        <!-- modal add categoria -->
-         <!-- adicionar no backend função separada -->
-         <section class="add-new-category-container" style="display: none;">
-                <input type="text" name="new_category_name" id="new-category-name" placeholder="Nome da nova categoria"
-                    class="input">
-                <button id="save-new-category-btn" class="button-glass" onclick="saveNewCategory()">
-                    <p>Salvar Categoria</p>
-                </button>
-         </section>
 
         <button type="submit" class="button-glass" id="sent-transaction-btn">Criar Transação</button>
     </form>
