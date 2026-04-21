@@ -42,6 +42,7 @@ def _build_create_transaction_context(user, form_data=None, errors=None):
 def create_category(request):
     return render(request, 'transactions/create_category.html')
 
+@login_required
 def create_transactions(request):
     if request.method == 'POST':
         form_data = {
