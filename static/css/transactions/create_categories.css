@@ -1,5 +1,5 @@
 @import url("../main.css");
-@import url("create_transaction.css");
+@import url("./create_transaction.css");
 
 .add-new-category-container {
     width: 100%;
