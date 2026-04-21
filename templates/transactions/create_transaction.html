@@ -20,22 +20,30 @@
         </span>
         <h2>Nova Transação</h2>
     </header>
-    <form method="post" action="{% url 'transactions:create_transaction' %}">
+
+    <form method="post" action="{% url 'transactions:create_transaction' %}" class="form-transaction-container glass">
         {% csrf_token %}
+        <!-- selecionar tipo de transação -->
         <select name="transaction_type" required class="transaction_type_select">
-            <option value="">Selecione o tipo</option>
+            <option value="">Selecione o tipo de transação</option>
             {% for value, label in transaction_type_choices %}
             <option value="{{ value }}" {% if form_data.transaction_type == value %}selected{% endif %}>{{ label }}
             </option>
             {% endfor %}
         </select>
-        <input type="text" name="name" placeholder="Nome da Transação" value="{{ form_data.name|default:'' }}" required
-            class="name_input input-box">
-        {% if errors.name %}<p>{{ errors.name }}</p>{% endif %}
-
         {% if errors.transaction_type %}<p>{{ errors.transaction_type }}</p>{% endif %}
 
+        <!-- nome da transação -->
+         <section class="name_container name_input">
+             <label for="name-input" class="name_label">Nome da Transação</label>
+             <input type="text" name="name" placeholder="Ex.: Conta de energia, Almoço" value="{{ form_data.name|default:'' }}" required  class="input-box" id="name-input">
+             {% if errors.name %}<p>{{ errors.name }}</p>{% endif %}
+         </section>
+
+
+        <!-- valor da transação -->
         <section class="value_container">
+            <label for="value-input">Valor da Transação (R$)</label>
             <input type="text" inputmode="decimal" id="value-input" name="value" placeholder="0,00"
                 value="{{ form_data.value|default:'' }}" required class="input-box">
             {% if errors.value %}<p>{{ errors.value }}</p>{% endif %}
@@ -43,18 +51,17 @@
             </p>
         </section>
 
-        <!-- modal selecionar categoria -->
-
-        <input type="hidden" name="category_id" id="selected-category" value="{{ form_data.category_id|default:'' }}"
-            class="input-box">
-
+        <label for="selected-category">Categoria</label>
+        <!-- selecionar categoria -->
+        <input type="hidden" name="category_id" id="selected-category" value="{{ form_data.category_id|default:'' }}"class="input-box">
         
         <section class="category_btn_container input-box" onclick="openCategoryModal()">
             <button class="category-option" type="button" id="category-btn">
                 <p>Selecionar categoria</p><span>></span>
             </button>
         </section>
-
+        
+        <!-- modal selecionar categoria -->
         <section class="category_modal_container" id="category-modal" style="display: none;">
             {% for category in categories %}
             <div class="category-option modal-option input-box" onclick="selectCategory('{{ category.id }}', '{{ category.name }}')">

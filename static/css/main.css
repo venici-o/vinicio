@@ -117,14 +117,17 @@ body {
 
 /* caixa de input/entrada de texto */
 .input-box {
-    background-color: #222;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    width: 100%;
-    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 15px;
+    color: #e0e0e0;
     outline: none;
+    background: rgba(255, 255, 255, 0.05);
+    font-family: inherit;
 }
+
+.input-box:focus { border-color: #ffd633; }
 
 /* Responsividade */
 @media (max-width: 1200px) {

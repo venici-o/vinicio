@@ -47,8 +47,8 @@ function openCategoryModal() {
             modal.style.display = 'none';
             pageTitle.textContent = 'Criar Transação';
             categoryBtnContainer ? categoryBtnContainer.style.display = 'flex' : null;
-            valueContainer ? valueContainer.style.display = 'block' : null;
-            nameInput ? nameInput.style.display = 'block' : null;
+            valueContainer ? valueContainer.style.display = 'flex' : null;
+            nameInput ? nameInput.style.display = 'flex' : null;
             transactionTypeSelect ? transactionTypeSelect.style.display = 'block' : null;
             sentTransactionBtn ? sentTransactionBtn.style.display = 'block' : null;
             addNewCategoryContainer ? addNewCategoryContainer.style.display = 'none' : null;
@@ -62,8 +62,8 @@ function selectCategory(categoryValue, categoryLabel) {
         modal.style.display = 'none';
         pageTitle.textContent = 'Criar Transação';
         categoryBtnContainer ? categoryBtnContainer.style.display = 'flex' : null;
-        valueContainer ? valueContainer.style.display = 'block' : null;
-        nameInput ? nameInput.style.display = 'block' : null;
+        valueContainer ? valueContainer.style.display = 'flex' : null;
+        nameInput ? nameInput.style.display = 'flex' : null;
         transactionTypeSelect ? transactionTypeSelect.style.display = 'block' : null;
         sentTransactionBtn ? sentTransactionBtn.style.display = 'block' : null;
         addNewCategoryContainer ? addNewCategoryContainer.style.display = 'none' : null;
@@ -87,7 +87,7 @@ function openCreateCategory() {
 
         if (modal) {
             modal.style.display = 'none';
-            
+
         }
     }
     //add o restante

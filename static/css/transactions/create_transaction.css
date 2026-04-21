@@ -6,13 +6,13 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    padding: 70px;
+    padding: 60px 100px;
 }
 
 .new_transaction header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 16px;
     width: 100%;
     padding: 0 40px 40px 0;
 }
@@ -20,7 +20,7 @@
 h2 {
     font-size: 24px;
     font-weight: 800;
-    color: #6d6d6d;
+    color: #e0e0e0;
     line-height: 1.5;
 }
 
@@ -45,27 +45,23 @@ h2 {
     color: #aaa;
 }
 
-form {
+.form-transaction-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    padding: 20px 150px;
-}
-
-select {
-    color: #ccc;
-    padding: 10px;
-    background-color: #222;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    width: 100%;
-    margin-bottom: 30px;
+    padding: 32px 40px;
+    border-radius: 36px;
 }
 
 input::selection {
     background-color: #444;
+}
 
+label, select {
+    font-size: 13px;
+    font-weight: 600;
+    color: #e0e0e0;
 }
 
 p {
@@ -77,11 +73,33 @@ p {
     letter-spacing: -0.07px;
     line-height: 1.4;
 }
+.value_container, .name_container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-box, select{
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 15px;
+    color: #e0e0e0;
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+    font-family: inherit;
+}
+
+select {
+    background-color: #222;
+    margin-bottom: 30px;
+}
 
 .category_btn_container {
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 
 .category_btn_container .category-option {
@@ -108,8 +126,20 @@ p {
 
 .modal-option {
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
+.form-transaction-container .button-glass {
+    background-color: var(--color-primary) !important;
+    color: #222;
+    font-weight: bold;
+    cursor: pointer;
+}
+#new-category-btn{
+    background-color: rgba(255, 255, 255, 0.027) !important;
+    color: #e0e0e0 !important;
+    cursor: pointer;
+}
 
 @media (max-width: 768px) {
     .new_transaction {
@@ -121,9 +151,10 @@ p {
         align-items: center;
         justify-content: space-between;
         padding: 0;
+        margin: 40px 0;
     }
 
-    form {
+    .form-transaction-container {
         padding: 20px;
     }
 }
