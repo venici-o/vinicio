@@ -53,7 +53,7 @@
 
         <label for="selected-category">Categoria</label>
         <!-- selecionar categoria -->
-        <input type="hidden" name="category_id" id="selected-category" value="{{ form_data.category_id|default:'' }}"class="input-box">
+        <input type="hidden" name="category_id" id="selected-category" value="{{ form_data.category_id|default:8 }}"class="input-box">
         
         <section class="category_btn_container input-box" onclick="openCategoryModal()">
             <button class="category-option" type="button" id="category-btn">
