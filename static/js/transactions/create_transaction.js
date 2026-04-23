@@ -24,9 +24,31 @@ const nameInput = document.querySelector('.name_input');
 const transactionTypeSelect = document.querySelector('.transaction_type_select');
 const sentTransactionBtn = document.querySelector('#sent-transaction-btn');
 const addNewCategoryContainer = document.querySelector('.add-new-category-container');
+const backBtn = document.getElementById('back_button');
+
+
+function closeCategoryModal() {
+    if (modal) {
+        backBtn.innerHTML = `<a class="back_button-link" id="back_button-link" href="/transactions" style="cursor:pointer;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg></a>`
+
+        modal.style.display = 'none';
+        pageTitle.textContent = 'Nova Transação';
+        categoryBtnContainer ? categoryBtnContainer.style.display = 'flex' : null;
+        valueContainer ? valueContainer.style.display = 'flex' : null;
+        nameInput ? nameInput.style.display = 'flex' : null;
+        transactionTypeSelect ? transactionTypeSelect.style.display = 'block' : null;
+        sentTransactionBtn ? sentTransactionBtn.style.display = 'block' : null;
+        addNewCategoryContainer ? addNewCategoryContainer.style.display = 'none' : null;
+    }
+};
 
 function openCategoryModal() {
     if (modal) {
+
+        backBtn.innerHTML = `<a class="back_button-link" id="back_button-link" onclick="closeCategoryModal()" style="cursor:pointer;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6" /></svg ></a > `
+
         modal.style.display = 'block';
         categoryBtnContainer ? categoryBtnContainer.style.display = 'none' : null;
         valueContainer ? valueContainer.style.display = 'none' : null;
@@ -40,19 +62,8 @@ function openCategoryModal() {
         pageTitle.textContent = 'Selecionar Categoria';
     }
 
-    const backBtn = document.getElementById('back-button-link');
     if (backBtn) {
-        backBtn.setAttribute('href', '#'); //corrigir isso depois
-        backBtn.onclick = function () {
-            modal.style.display = 'none';
-            pageTitle.textContent = 'Criar Transação';
-            categoryBtnContainer ? categoryBtnContainer.style.display = 'flex' : null;
-            valueContainer ? valueContainer.style.display = 'flex' : null;
-            nameInput ? nameInput.style.display = 'flex' : null;
-            transactionTypeSelect ? transactionTypeSelect.style.display = 'block' : null;
-            sentTransactionBtn ? sentTransactionBtn.style.display = 'block' : null;
-            addNewCategoryContainer ? addNewCategoryContainer.style.display = 'none' : null;
-        };
+        backBtn.setAttribute('href', "javascript:closeCategory()")
     }
 
 }
