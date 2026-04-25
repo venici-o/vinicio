@@ -19,4 +19,5 @@ urlpatterns = [
     path("metas/", include("apps.goals.urls")),
     path("subscriptions/", include("apps.subscriptions.urls")),
     path("budget/", include("apps.budget.urls")),
+    path("dashboard/", include("apps.dashboard.urls")),
 ]
