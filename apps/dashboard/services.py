@@ -29,6 +29,11 @@ def _empty_patrimonio(period: str) -> dict:
 def _month_name(d: date) -> str:
     return date_fmt(d, "F/Y")
 
+def _today_display(d: date) -> str:
+    weekday = date_fmt(d, "l")
+    month = date_fmt(d, "F").lower()
+    return f"{weekday}, {d.day} de {month}"
+
 def _safe_change_percent(change: Decimal, base: Decimal) -> Decimal:
     """(change / |base|) * 100 or 0 if base is zero."""
     if not base:
@@ -346,6 +351,7 @@ def build_dashboard_context(user) -> dict:
     return {
         "user_first_name": user.first_name or user.username,
         "today": today,
+        "today_display": _today_display(today),
         "total_balance": total_balance,
         "month_summary": month_summary,
         "budget_status": budget_status,
