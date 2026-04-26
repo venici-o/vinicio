@@ -53,13 +53,13 @@ class DashboardServiceTests(TestCase):
         make_transaction(self.user, Decimal("1000.00"), "DEPOSIT", days_ago=40)
         make_transaction(self.user, Decimal("100.00"), "DEPOSIT")
         ctx = build_dashboard_context(self.user)
-        self.assertEqual(ctx["month_income"], Decimal("100.00"))
+        self.assertEqual(ctx["month_summary"]["income"], Decimal("100.00"))
 
     def test_nearest_goal_picks_smallest_future_deadline(self):
         make_goal(self.user, deadline_days=60)
         closer = make_goal(self.user, deadline_days=10)
         ctx = build_dashboard_context(self.user)
-        self.assertEqual(ctx["nearest_goal"].pk, closer.pk)
+        self.assertEqual(ctx["priority_goal"].pk, closer.pk)
 
     def test_budget_level_warning_at_80_percent_boundary(self):
         make_budget(self.user, Decimal("100.00"))
