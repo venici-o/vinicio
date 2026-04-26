@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Conta
 @login_required
 def accounts_list(request):
     return render(request, 'bank_accounts/myaccounts.html')
