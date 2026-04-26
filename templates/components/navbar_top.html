@@ -7,6 +7,9 @@
     </a>
     <div class="main_section" aria-label="Navegação principal">
         <nav class="navbar__nav">
+        <a href="{% url 'dashboard:home' %}" class="button-glass {% if request.resolver_match.namespace == 'dashboard' %}button-glass--active{% endif %}">
+            Painel
+        </a>
         <a href="{% url 'transactions:list' %}" class="button-glass {% if request.resolver_match.namespace == 'transactions' %}button-glass--active{% endif %}">
             Minha Carteira
         </a>

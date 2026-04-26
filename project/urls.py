@@ -5,7 +5,7 @@ from django.urls import include, path
 
 def root_redirect(request):
     if request.user.is_authenticated:
-        return redirect("transactions:list")
+        return redirect("dashboard:home")
     return redirect("accounts/login")
 
 
