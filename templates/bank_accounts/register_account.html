@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Registrar Conta — Organizei{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/bank_accounts/register_account.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="main-content">
+
+    <div class="auth-container">
+        <h1 class="title">Registrar Conta</h1>
+
+        <div class="auth-card glass">
+
+            <h2 class="subtitle">
+                Como deseja autenticar sua conta?
+            </h2>
+
+            <div class="auth-buttons ">
+                <a href="{% url 'register_manual' %}" class="btn-primary">
+                    Manual
+                </a>
+
+                <a href="{% url 'register_auto' %}" class="btn-primary">
+                    Automático
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+{% endblock %}

@@ -1,31 +1,32 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
 
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Contas</title>
-</head>
-<body>
+{% block title %}Contas Registradas — Organizei{% endblock %}
 
-```
-<h1>Contas Registradas</h1>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/bank_accounts/bank_accounts.css' %}">
+{% endblock %}
 
-<div>
-    {% for conta in contas %}
-        <div>
-            <div>
-                <h3>{{ conta.banco }}</h3>
-                <p>{{ conta.tipo }}</p>
-                <p>{{ conta.numero }}</p>
-            </div>
+{% block content %}
+<main class="main-content">
+
+    <div class="accounts-container">
+
+        <h1 class="title">Contas Registradas</h1>
+
+        <div class="accounts-card glass">
+            <p class="tx-empty">
+                Você ainda não cadastrou nenhuma conta.
+            </p>
         </div>
-    {% endfor %}
-</div>
 
-<div>
-    <button>+ Adicionar Conta</button>
-</div>
-```
+       <div class="button-area">
+            <a href="{% url 'register_account' %}" class="button-glass">
+            + Adicionar Conta
+            </a>
+        </div>
 
-</body>
-</html>
+    </div>
+
+</main>
+{% endblock %}
