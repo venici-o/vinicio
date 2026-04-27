@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
 
+from apps.bank_accounts.models import Conta
 from .services import build_dashboard_context, get_patrimonio_series
 
 VALID_PERIODS = {"1M", "6M", "1A", "ALL"}
@@ -10,6 +11,16 @@ VALID_PERIODS = {"1M", "6M", "1A", "ALL"}
 @login_required
 def dashboard_home(request):
     context = build_dashboard_context(request.user)
+    registered_accounts = list(
+        Conta.objects.filter(usuario=request.user)
+        .select_related("bank")
+        .order_by("-id")[:4]
+    )
+    context["registered_accounts"] = registered_accounts
+    context["registered_accounts_total"] = len(registered_accounts)
+    context["registered_accounts_has_more"] = (
+        Conta.objects.filter(usuario=request.user).count() > len(registered_accounts)
+    )
     return render(request, "dashboard/index.html", context)
 
 
