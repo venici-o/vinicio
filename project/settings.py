@@ -26,9 +26,14 @@ ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").split(","
 # Allow ELB health checker to reach the instance via its internal IP
 try:
     import urllib.request
-    EC2_INTERNAL_IP = urllib.request.urlopen(
-        "http://169.254.169.254/latest/meta-data/local-ipv4", timeout=0.1
-    ).read().decode()
+
+    EC2_INTERNAL_IP = (
+        urllib.request.urlopen(
+            "http://169.254.169.254/latest/meta-data/local-ipv4", timeout=0.1
+        )
+        .read()
+        .decode()
+    )
     ALLOWED_HOSTS.append(EC2_INTERNAL_IP)
 except Exception:
     pass
@@ -49,6 +54,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # local apps
     "apps.accounts",
+    "apps.dashboard",
     "apps.transactions",
     "apps.categories",
     "apps.investments",
@@ -132,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "pt-br"
 
 TIME_ZONE = "UTC"
 
@@ -162,7 +168,7 @@ LOGOUT_REDIRECT_URL = "/accounts/login/"
 # Security settings for production
 if not DEBUG:
     SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL_REDIRECT", "False") == "True"
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True

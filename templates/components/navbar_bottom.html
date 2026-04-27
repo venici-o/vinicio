@@ -1,6 +1,16 @@
 {% load static %}
 <nav class="tab-bar" aria-label="Navegação mobile">
 
+  <a href="{% url 'dashboard:home' %}" class="tab-item {% if request.resolver_match.namespace == 'dashboard' %}tab-item--active{% endif %}">
+    <svg class="tab-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1"/>
+      <rect x="14" y="3" width="7" height="7" rx="1"/>
+      <rect x="3" y="14" width="7" height="7" rx="1"/>
+      <rect x="14" y="14" width="7" height="7" rx="1"/>
+    </svg>
+    <span class="tab-item__label">Painel</span>
+  </a>
+
   <a href="{% url 'transactions:list' %}" class="tab-item {% if request.resolver_match.namespace == 'transactions' %}tab-item--active{% endif %}">
     <svg class="tab-item__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>

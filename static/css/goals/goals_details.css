@@ -3,7 +3,6 @@
     max-width: 1312px;
     margin: 0 auto;
     padding: 60px 64px 80px;
-    font-family: 'DM Sans', sans-serif;
     min-height: 100vh;
 }
 
@@ -15,7 +14,7 @@
 }
 
 .detail-header__back {
-    color: #6d6d6d;
+    color: var(--text-dim);
     text-decoration: none;
     font-size: 22px;
     line-height: 1;
@@ -35,11 +34,11 @@
 .detail-header__spacer { width: 24px; }
 
 .progress-section {
-    border-radius: 36px;
-    background-color: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(8px);
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-2xl);
+    background-color: var(--bg-surface);
+    backdrop-filter: var(--glass-blur);
+    border-top: 1px solid var(--glass-border-top);
+    border-bottom: 1px solid var(--glass-border-bottom);
     box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
     padding: 32px 60px;
     margin: 0 auto 24px auto;
@@ -60,13 +59,13 @@
 
 .progress-section__label {
     font-size: 20px;
-    color: #6d6d6d;
+    color: var(--text-dim);
     text-align: center;
 }
 
 .progress-section__value {
     font-size: 18px;
-    color: #e0e0e0;
+    color: var(--text-body);
     font-weight: 700;
     text-align: center;
 }
@@ -74,16 +73,16 @@
 .progress-section__percent {
     font-size: 18px;
     font-weight: 900;
-    color: #ffd633;
+    color: var(--color-primary);
     margin: 0;
     text-align: center;
 }
 
 .completed-banner {
-    background: rgba(255, 214, 51, 0.12);
-    border: 0.7px solid rgba(255, 214, 51, 0.35);
-    color: #ffd633;
-    border-radius: 16px;
+    background: var(--color-primary-bg);
+    border: 0.7px solid var(--color-primary-border);
+    color: var(--color-primary);
+    border-radius: var(--radius-lg);
     padding: 16px 20px;
     text-align: center;
     font-size: 16px;
@@ -93,11 +92,11 @@
 
 .btn-contribute {
     display: inline-block;
-    background: #ffd633;
+    background: var(--color-primary);
     color: #111;
     text-align: center;
     padding: 14px 28px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     text-decoration: none;
     font-size: 15px;
     font-weight: 700;
@@ -106,13 +105,13 @@
 }
 
 .btn-contribute:hover {
-    background: #e6c02e;
+    background: var(--color-primary-dark);
 }
 
 .contributions-title {
     font-size: 18px;
     font-weight: 700;
-    color: #e0e0e0;
+    color: var(--text-body);
     margin: 0 0 16px;
 }
 
@@ -121,7 +120,7 @@
     align-items: center;
     width: 100%;
     padding: 16px 16px 16px 22px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     gap: 12px;
 }
 
@@ -139,7 +138,7 @@
     gap: 2px;
     font-size: 14px;
     font-weight: 300;
-    color: #e0e0e0;
+    color: var(--text-body);
     letter-spacing: -0.07px;
     line-height: 1.4;
     white-space: nowrap;
@@ -152,7 +151,6 @@
     opacity: 0.4;
 }
 
-/* Amount */
 .contribution-item__amount {
     font-size: 16px;
     font-weight: 400;
@@ -162,20 +160,18 @@
     flex-shrink: 0;
     padding-right: 4px;
     margin: 0;
-    color:  rgba(48, 194, 29, 0.6);
+    color: var(--color-income-bg);
 }
 
 .no-contributions {
     font-size: 14px;
-    color: #6d6d6d;
+    color: var(--text-dim);
     text-align: center;
     padding: 40px 0;
 }
 
 @media (max-width: 1024px) {
-    .detail-page {
-        padding: 48px 32px 60px;
-    }
+    .detail-page { padding: 48px 32px 60px; }
 }
 
 @media (max-width: 768px) {
@@ -196,20 +192,12 @@
         align-items: center;
         width: 100%;
         padding: 12px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        border-bottom: 1px solid var(--border-subtle);
     }
 
-    .progress-section__stat:last-child {
-        border-bottom: none;
-    }
-
-    .progress-section__label {
-        text-align: left;
-    }
-
-    .progress-section__value {
-        text-align: right;
-    }
+    .progress-section__stat:last-child { border-bottom: none; }
+    .progress-section__label { text-align: left; }
+    .progress-section__value { text-align: right; }
 
     .progress-section__percent {
         font-size: 36px;
@@ -217,6 +205,7 @@
         padding: 16px 0;
         border-bottom: none;
     }
+
     .btn-contribute {
         display: block;
         text-align: center;
@@ -225,11 +214,6 @@
 }
 
 @media (max-width: 480px) {
-    .detail-header__title {
-        font-size: 22px;
-    }
-
-    .progress-section__percent {
-        font-size: 18px;
-    }
+    .detail-header__title { font-size: 22px; }
+    .progress-section__percent { font-size: 18px; }
 }

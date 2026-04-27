@@ -1,0 +1,106 @@
+<div class="mov">
+
+  <div class="mov-header">
+    <div class="mov-header-left">
+      <button class="mov-icon-btn" id="prev-month" aria-label="Mês anterior">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 16V8m0 0L4 11m3-3 3 3M17 8v8m0 0 3-3m-3 3-3-3"/>
+        </svg>
+      </button>
+      <span class="mov-title" id="movimentacao-title">Movimentação · {{ month_summary.month_short }}</span>
+    </div>
+    <a href="{% url 'transactions:list' %}" class="mov-icon-btn" aria-label="Ver transações">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 17 17 7M7 7h10v10"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="mov-balance">
+    <p class="mov-balance-label">SALDO DO MÊS</p>
+    <p class="mov-balance-amount {% if month_summary.balance >= 0 %}mov-balance-amount-positive{% else %}mov-balance-amount-negative{% endif %}">
+      {% if month_summary.balance >= 0 %}+{% endif %}R$ {{ month_summary.balance|floatformat:2 }}
+    </p>
+    {% if month_summary.balance_change_percent %}
+    <div class="mov-change">
+      <span class="mov-change-badge {% if month_summary.balance_change_percent > 0 %}mov-change-badge-up{% else %}mov-change-badge-down{% endif %}"
+            aria-label="Variação de {{ month_summary.balance_change_percent }}% em relação ao mês anterior">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          {% if month_summary.balance_change_percent > 0 %}
+          <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+          {% else %}
+          <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+          {% endif %}
+        </svg>
+        {{ month_summary.balance_change_percent }}%
+      </span>
+      <span class="mov-change-label">vs. mês anterior</span>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="mov-split-bar" aria-hidden="true">
+    <span class="mov-split-bar-income"  style="--w: {{ month_summary.income_bar_percent }}%"></span>
+    <span class="mov-split-bar-expense" style="--w: {{ month_summary.expense_bar_percent }}%"></span>
+  </div>
+
+  {% if month_summary.income == 0 and month_summary.expense == 0 %}
+  <p class="mov-empty">Nenhuma movimentação em {{ month_summary.reference_month }}.</p>
+  {% else %}
+
+  <div class="mov-flow">
+    <div class="mov-flow-side">
+      <div class="mov-flow-label">
+        <span class="mov-flow-dot mov-flow-dot-income"></span>
+        Entradas
+      </div>
+      <span class="mov-flow-amount">R$ {{ month_summary.income|floatformat:2 }}</span>
+    </div>
+    <div class="mov-flow-side mov-flow-side-right">
+      <div class="mov-flow-label">
+        Saídas
+        <span class="mov-flow-dot mov-flow-dot-expense"></span>
+      </div>
+      <span class="mov-flow-amount">R$ {{ month_summary.expense|floatformat:2 }}</span>
+    </div>
+  </div>
+
+  {% if budget_status %}
+  <div class="mov-budget">
+
+    <div class="mov-budget-header">
+      <div class="mov-budget-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span>Orçamento mensal</span>
+      </div>
+      <span class="mov-budget-pct mov-budget-pct-{{ budget_status.level }}">{{ budget_status.percent }}%</span>
+    </div>
+
+    {% if budget_status.level == "warning" or budget_status.level == "exceeded" %}
+    <div class="mov-budget-alert mov-budget-alert-{{ budget_status.level }}">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+      Atenção: <strong>{{ budget_status.percent }}%</strong> do limite usado
+    </div>
+    {% endif %}
+
+    <div class="mov-budget-bar">
+      <div class="mov-budget-bar-fill mov-budget-bar-fill-{{ budget_status.level }}"
+           style="width: {% if budget_status.percent > 100 %}100{% else %}{{ budget_status.percent }}{% endif %}%"></div>
+    </div>
+
+    <div class="mov-budget-footer">
+      <span>R$ {{ budget_status.spent|floatformat:0 }} de R$ {{ budget_status.limit|floatformat:0 }}</span>
+      <span>Restam <strong>R$ {{ budget_status.remaining|floatformat:0 }}</strong></span>
+    </div>
+
+  </div>
+  {% endif %}
+
+  {% endif %}
+
+</div>

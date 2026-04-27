@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Painel — Organizei{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard/patrimonio.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard/movimentacao.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard/categories.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard/metas.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="main-content dashboard">
+  <section class="greet">
+    <div>
+      <h1>Olá, <em>{{ user_first_name }}</em>.</h1>
+    </div>
+    <div class="meta">
+      <span>{{ today_display }} · {{ month_summary.reference_month }}</span>
+    </div>
+  </section>
+
+  {% if is_empty %}
+  <div class="dashboard-empty glass">
+    <p>Você ainda não tem dados. Comece registrando sua primeira transação.</p>
+    <a href="{% url 'transactions:create_transaction' %}" class="button-glass">+ Nova Transação</a>
+  </div>
+  {% endif %}
+
+  <div class="dashboard-grid">
+
+    <section class="dashboard-card dashboard-card--full" aria-label="Patrimônio">
+      {% include "dashboard/partials/patrimonio.html" %}
+    </section>
+
+    <section class="dashboard-card dashboard-card--movimentacao" aria-label="Movimentação">
+      {% include "dashboard/partials/movimentacao.html" %}
+    </section>
+
+    <section class="dashboard-card dashboard-card--categorias" aria-label="Principais categorias">
+      {% include "dashboard/partials/categorias.html" %}
+    </section>
+
+    <section class="dashboard-card dashboard-card--full" aria-label="Metas">
+      {% include "dashboard/partials/metas.html" %}
+    </section>
+
+  </div>
+
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/dashboard/dashboard.js' %}"></script>
+{% endblock %}

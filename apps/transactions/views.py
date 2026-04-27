@@ -4,17 +4,9 @@ from itertools import groupby
 
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.utils.dateformat import format as date_fmt
 from .models import Transaction, Category
 from django.db.models import Sum, Q
-
-MONTHS_PT = [
-    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
-]
-MONTHS_PT_FULL = [
-    'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
-    'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro',
-]
 
 
 def _get_categories_for_user(user):
@@ -138,11 +130,11 @@ def get_transactions(request):
     yesterday = today - timedelta(days=1)
     for date_key, items in groupby(monthly_qs, key=lambda t: t.date):
         if date_key == today:
-            label = f"Hoje, {date_key.day} de {MONTHS_PT_FULL[date_key.month - 1]}"
+            label = f"Hoje, {date_key.day} de {date_fmt(date_key, 'F').lower()}"
         elif date_key == yesterday:
-            label = f"Ontem, {date_key.day} de {MONTHS_PT_FULL[date_key.month - 1]}"
+            label = f"Ontem, {date_key.day} de {date_fmt(date_key, 'F').lower()}"
         else:
-            label = f"{date_key.day} de {MONTHS_PT_FULL[date_key.month - 1]}"
+            label = f"{date_key.day} de {date_fmt(date_key, 'F').lower()}"
         groups.append({'label': label, 'transactions': list(items)})
 
     # Navegação de meses
@@ -156,7 +148,7 @@ def get_transactions(request):
         'saldo': saldo,
         'balanco_mensal': balanco_mensal,
         'balanco_positivo': balanco_mensal >= 0,
-        'month_name': MONTHS_PT[month - 1],
+        'month_name': date_fmt(date(year, month, 1), "F"),
         'year': year,
         'prev_month': prev_month,
         'prev_year': prev_year,

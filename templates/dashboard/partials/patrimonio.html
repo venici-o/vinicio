@@ -1,0 +1,79 @@
+<div class="pat">
+
+  <div class="pat-header">
+    <div class="pat-title">
+      <div class="pat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M3 7h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
+          <path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
+          <circle cx="17" cy="13" r="1.2" fill="currentColor"/>
+        </svg>
+      </div>
+      Patrimônio
+    </div>
+    <div class="pat-actions">
+      <div class="pat-period-pills" role="tablist" aria-label="Período do gráfico">
+        <button type="button" class="pat-period-btn active" data-period="1M" aria-selected="true">1M</button>
+        <button type="button" class="pat-period-btn" data-period="6M" aria-selected="false">6M</button>
+        <button type="button" class="pat-period-btn" data-period="1A" aria-selected="false">1A</button>
+        <button type="button" class="pat-period-btn" data-period="ALL" aria-selected="false">TUDO</button>
+      </div>
+      <a href="{% url 'transactions:list' %}" class="pat-link">
+        Ver detalhes
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </div>
+
+  {% if patrimonio_initial.series %}
+
+  <div class="pat-stats">
+    <div class="pat-value num" id="patrimonio-value">
+      <span class="pat-currency">R$</span>{{ patrimonio_initial.current_value|floatformat:2 }}
+    </div>
+    <div class="pat-chip-row">
+      <span class="pat-chip {% if patrimonio_initial.change_absolute >= 0 %}pat-chip-up{% else %}pat-chip-down{% endif %}" id="patrimonio-badge">
+        {% if patrimonio_initial.change_absolute >= 0 %}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg>
+        {% else %}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3 7l6 6 4-4 8 8M14 17h7v-7"/></svg>
+        {% endif %}
+        <span class="num" id="patrimonio-badge-abs">
+          {% if patrimonio_initial.change_absolute >= 0 %}+{% endif %}R$ {{ patrimonio_initial.change_absolute|floatformat:2 }}
+        </span>
+      </span>
+      <span class="pat-chip-sub">
+        <span class="num" id="patrimonio-badge-pct">
+          {% if patrimonio_initial.change_percent >= 0 %}+{% endif %}{{ patrimonio_initial.change_percent|floatformat:2 }}%
+        </span>
+        <span id="patrimonio-period-label"> em 1M</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="pat-chart-wrap" id="patChartWrap" aria-label="Gráfico de evolução do patrimônio">
+    <svg class="pat-chart-svg" id="patrimonio-chart" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true"></svg>
+    <div class="pat-crosshair" id="patCrosshair"></div>
+    <div class="pat-hover-dot" id="patHoverDot"></div>
+    <div class="pat-tooltip" id="patTooltip">
+      <div class="pat-tt-date"></div>
+      <div class="pat-tt-value"></div>
+    </div>
+  </div>
+
+  {% else %}
+
+  <div class="pat-empty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+      <path d="M3 7h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
+      <path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
+    </svg>
+    <p>Nenhuma transação registrada ainda.</p>
+    <a href="{% url 'transactions:create_transaction' %}" class="pat-empty-cta">Registre sua primeira transação</a>
+  </div>
+
+  {% endif %}
+
+  {{ patrimonio_initial|json_script:"patrimonio-data" }}
+
+</div>

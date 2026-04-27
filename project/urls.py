@@ -5,7 +5,7 @@ from django.urls import include, path
 
 def root_redirect(request):
     if request.user.is_authenticated:
-        return redirect("transactions:list")
+        return redirect("dashboard:home")
     return redirect("accounts/login")
 
 
@@ -19,5 +19,6 @@ urlpatterns = [
     path("metas/", include("apps.goals.urls")),
     path("subscriptions/", include("apps.subscriptions.urls")),
     path("budget/", include("apps.budget.urls")),
+    path("dashboard/", include("apps.dashboard.urls")),
     path("my_accounts/",include("apps.bank_accounts.urls"))
 ]
