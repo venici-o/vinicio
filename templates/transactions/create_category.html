@@ -3,7 +3,7 @@
 {% block title %}Criar Categoria — Organizei{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/transactions/create_categories.css' %}">
+<link rel="stylesheet" href="{% static 'css/transactions/create_category.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -21,15 +21,16 @@
         </header>
     
     <section class="add-new-category-container glass">
-        <input type="text" name="new_category_name" id="new-category-name" placeholder="Nome da nova categoria"
-            class="input-box">
-        <button id="save-new-category-btn" class="button-glass" onclick="saveNewCategory()">
-            <p>Salvar Categoria</p>
-        </button>
+        <form action="{% url 'transactions:create_category' %}" method="post">
+            {% csrf_token %}
+            <label for="new-category-name">Nome da nova categoria</label>
+            <input type="text" name="new_category_name" id="new-category-name" placeholder="Ex: Compras, Emergências, Renda extra" class="input-box">
+            <button id="save-new-category-btn" class="button-glass" onclick="saveNewCategory()" type="submit">
+                <p>Salvar Categoria</p>
+            </button>
+        </form>
     </section>
 </section>
 
 {% endblock %}
-{% block extra_js %}
-<!-- <script src="{% static 'js/transactions/create_category.js' %}"></script> -->
-{% endblock %}
+{% block extra_js %}{% endblock %}

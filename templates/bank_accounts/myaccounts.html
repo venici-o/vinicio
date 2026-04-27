@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contas Registradas — Organizei{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/bank_accounts/bank_accounts.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="main-content">
+
+    <div class="accounts-container">
+
+        <h1 class="title">Contas Registradas</h1>
+
+        <div class="accounts-card glass">
+            <p class="tx-empty">
+                Você ainda não cadastrou nenhuma conta.
+            </p>
+        </div>
+
+       <div class="button-area">
+            <a href="{% url 'register_account' %}" class="button-glass">
+            + Adicionar Conta
+            </a>
+        </div>
+
+    </div>
+
+</main>
+{% endblock %}
