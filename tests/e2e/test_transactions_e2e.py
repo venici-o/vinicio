@@ -20,20 +20,23 @@ class TransactionsE2ETest(E2EBaseTest):
         name_input = self.driver.find_element(By.ID, "name-input")
         name_input.clear()
         name_input.send_keys(name)
-        value_input = self.driver.find_element(By.ID, "value-input")
-        value_input.clear()
-        value_input.send_keys(value)
+        # Set value via JS to bypass the locale-dependent input formatter
+        self.driver.execute_script(
+            f"document.getElementById('value-input').value = '{value}';"
+        )
         # Clear the default category_id so no invalid FK is sent
         self.driver.execute_script(
             "document.getElementById('selected-category').value = '';"
         )
+        create_url = self.driver.current_url
         self.driver.find_element(By.ID, "sent-transaction-btn").click()
+        # Wait for redirect away from the create page
+        self.wait().until(EC.url_changes(create_url))
 
     def test_create_deposit_appears_in_list(self):
         """Creating a DEPOSIT transaction redirects to list and shows the entry."""
         self._fill_transaction_form("DEPOSIT", "Salário Teste", "2500.00")
 
-        self.wait().until(EC.url_contains("/transactions/"))
         body_text = self.driver.find_element(By.TAG_NAME, "body").text
         self.assertIn("Salário Teste", body_text)
 
@@ -41,7 +44,6 @@ class TransactionsE2ETest(E2EBaseTest):
         """Creating a WITHDRAWAL transaction redirects to list and shows the entry."""
         self._fill_transaction_form("WITHDRAWAL", "Conta de Luz", "180.00")
 
-        self.wait().until(EC.url_contains("/transactions/"))
         body_text = self.driver.find_element(By.TAG_NAME, "body").text
         self.assertIn("Conta de Luz", body_text)
 
