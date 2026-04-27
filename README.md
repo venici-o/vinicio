@@ -48,10 +48,8 @@ Foram selecionadas 3 histórias para implementação nesta entrega:
 2. Impor limites de gastos
 3. Estabelecer objetivos/metas de consumo
 
-### JIRA — Sprint 02
-
-<!-- adicionar link da sprint 02 no JIRA -->
-[Acessar Sprint 02 no JIRA]()
+### JIRA — Sprint 01
+[Acessar Sprint 01 no JIRA](https://organizei.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)
 
 ### Issue/Bug Tracker (GitHub)
 
@@ -129,6 +127,34 @@ Foram selecionadas 4 histórias para implementação nesta entrega:
 2. Visualizar saldo das contas bancárias
 3. Visualizar painel financeiro (dashboard)
 4. Categorizar transações
+
+### JIRA - Sprint 02
+[Acessar Sprint 02 no Jira](https://organizei.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)
+
+### Screencast com as histórias implementadas
+[Link para o vídeo screencast]()
+
+### Programação em par (atualização)
+Nosso grupo seguiu o mesmo procedimento da entrega anterior, com três duplas e cada uma com uma história para implementar, exceto uma dupla que ficou com duas histórias. Porém, independente desta divisão, os componentes do grupo como um todo ajudaram-se uns aos outros.
+
+### Issues/Bug tracker (GitHub)
+#### Milestone da Sprint 2:
+<img width="1161" height="414" alt="image" src="https://github.com/user-attachments/assets/bdeae1e8-8b7e-4986-a712-70b63aa9ad2b" />
+
+#### Issues resolvidas:
+Estão incluidas funcionalidades em falta e bugs que foram encontrados ao longo do uso da aplicação.
+
+<img width="1204" height="517" alt="image" src="https://github.com/user-attachments/assets/b574b329-7b84-4f60-8145-8758fda262b1" />
+
+#### Issues em aberto:
+Algumas dessas issues inclui a melhora de alguma funcionalidade do sistema e alguns bugs não resolvidos.
+
+<img width="1198" height="385" alt="image" src="https://github.com/user-attachments/assets/c621cb67-5671-4166-9c75-aa9830e023db" />
+
+### Quadro da Sprint 3
+#### Quadro da Sprint 3 + Backlog atualizado
+
+#### Board da Sprint 3
 
 ---
 
