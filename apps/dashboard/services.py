@@ -227,13 +227,23 @@ def get_movimentacao_by_month(user, month: date) -> dict:
 
     budget_status = _budget_status_for(user, month, expense)
 
+    total = income + expense
+    if total:
+        income_bar = f"{float(income / total * 100):.1f}"
+        expense_bar = f"{float(expense / total * 100):.1f}"
+    else:
+        income_bar = expense_bar = "0.0"
+
     return {
         "reference_month": _month_name(month),
+        "month_short": date_fmt(month, "F"),
         "income": income,
         "expense": expense,
         "balance": balance,
         "prev_month_balance": prev_balance,
         "balance_change_percent": balance_change_percent,
+        "income_bar_percent": income_bar,
+        "expense_bar_percent": expense_bar,
         "budget_status": budget_status,
     }
     
@@ -300,11 +310,14 @@ def build_dashboard_context(user) -> dict:
     month_data = get_movimentacao_by_month(user, today)
     month_summary = {
         "reference_month": month_data["reference_month"],
+        "month_short": month_data["month_short"],
         "income": month_data["income"],
         "expense": month_data["expense"],
         "balance": month_data["balance"],
         "prev_month_balance": month_data["prev_month_balance"],
         "balance_change_percent": month_data["balance_change_percent"],
+        "income_bar_percent": month_data["income_bar_percent"],
+        "expense_bar_percent": month_data["expense_bar_percent"],
     }
     budget_status = month_data["budget_status"]
 
