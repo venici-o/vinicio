@@ -1,0 +1,38 @@
+.edit-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.edit-actions #sent-transaction-btn {
+    flex: 1;
+}
+
+.edit-actions #delete-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    padding: 0 24px;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.027) !important;
+    color: rgba(239, 110, 110, 0.8) !important;
+    border: 1px solid rgba(239, 110, 110, 0.2) !important;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.edit-actions #delete-btn:hover {
+    background-color: rgba(239, 110, 110, 0.08) !important;
+    border-color: rgba(239, 110, 110, 0.4) !important;
+}
+
+@media (max-width: 480px) {
+    .edit-actions {
+        flex-direction: column;
+    }
+    .edit-actions #delete-btn {
+        justify-content: center;
+        padding: 12px;
+    }
+}
