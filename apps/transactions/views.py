@@ -2,12 +2,11 @@ from decimal import Decimal, InvalidOperation
 from datetime import date, timedelta
 from itertools import groupby
 
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.dateformat import format as date_fmt
 from .models import Transaction, Category
 from django.db.models import Sum, Q
-
 
 def _get_categories_for_user(user):
     return Category.objects.filter(Q(user=None) | Q(user=user)).order_by('name')
@@ -155,3 +154,90 @@ def get_transactions(request):
         'next_month': next_month,
         'next_year': next_year,
     })
+
+@login_required
+def edit_transaction(request, pk):
+    transaction = get_object_or_404(Transaction, pk=pk, user=request.user)
+ 
+    if request.method == 'POST':
+        form_data = {
+            'name': request.POST.get('name', '').strip(),
+            'transaction_type': request.POST.get('transaction_type', '').strip(),
+            'value': request.POST.get('value', '').strip(),
+            'category_id': request.POST.get('category_id', '').strip(),
+        }
+        errors = {}
+ 
+        if not form_data['name']:
+            errors['name'] = 'Informe o nome da transação.'
+        elif len(form_data['name']) > 150:
+            errors['name'] = 'O nome deve ter no máximo 150 caracteres.'
+ 
+        allowed_types = {choice[0] for choice in Transaction.TYPE_CHOICES}
+        if form_data['transaction_type'] not in allowed_types:
+            errors['transaction_type'] = 'Selecione um tipo de transação válido.'
+ 
+        category = None
+        if form_data['category_id']:
+            try:
+                category = _get_categories_for_user(request.user).get(pk=form_data['category_id'])
+            except Category.DoesNotExist:
+                errors['category_id'] = 'Selecione uma categoria válida.'
+ 
+        raw_value = form_data['value'].replace(',', '.')
+        try:
+            parsed_value = Decimal(raw_value)
+            if parsed_value <= 0:
+                errors['value'] = 'O valor deve ser maior que zero.'
+        except (InvalidOperation, ValueError):
+            parsed_value = None
+            errors['value'] = 'Informe um valor numérico válido.'
+ 
+        if not errors:
+            transaction.name = form_data['name']
+            transaction.transaction_type = form_data['transaction_type']
+            transaction.value = parsed_value
+            transaction.category = category
+            transaction.save()
+            return redirect('transactions:list')
+ 
+        context = _build_edit_transaction_context(request.user, transaction, form_data=form_data, errors=errors)
+        return render(request, 'transactions/edit_transaction.html', context)
+ 
+    form_data = {
+        'name': transaction.name,
+        'transaction_type': transaction.transaction_type,
+        'value': str(transaction.value),
+        'category_id': str(transaction.category.pk) if transaction.category else '',
+    }
+    context = _build_edit_transaction_context(request.user, transaction, form_data=form_data)
+    return render(request, 'transactions/edit_transaction.html', context)
+ 
+ 
+def _build_edit_transaction_context(user, transaction, form_data=None, errors=None):
+    from django.db.models import Sum, Q
+    totais = Transaction.objects.filter(user=user).aggregate(
+        e=Sum('value', filter=Q(transaction_type='DEPOSIT')),
+        s=Sum('value', filter=Q(transaction_type='WITHDRAWAL'))
+    )
+    account_balance = (totais['e'] or 0) - (totais['s'] or 0)
+    return {
+        'transaction': transaction,
+        'form_data': form_data or {},
+        'errors': errors or {},
+        'account_balance': account_balance,
+        'transaction_type_choices': Transaction.TYPE_CHOICES,
+        'categories': _get_categories_for_user(user),
+    }
+ 
+ 
+@login_required
+def delete_transaction(request, pk):
+    transaction = get_object_or_404(Transaction, pk=pk, user=request.user)
+ 
+    if request.method == 'POST':
+        transaction.delete()
+        return redirect('transactions:list')
+ 
+    return render(request, 'transactions/delete_transaction.html', {'transaction': transaction})
+ 

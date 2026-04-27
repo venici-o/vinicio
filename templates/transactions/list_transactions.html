@@ -46,7 +46,7 @@
     <div class="tx-group">
       <p class="tx-group__label">{{ group.label }}</p>
       {% for tx in group.transactions %}
-      <div class="tx-item glass">
+      <a href="{% url 'transactions:update' tx.pk %}" class="tx-item glass" style="text-decoration: none;">
         <div class="tx-item__icon {% if tx.transaction_type == 'WITHDRAWAL' %}tx-item__icon--expense{% else %}tx-item__icon--income{% endif %}">
           {% if tx.transaction_type == 'WITHDRAWAL' %}
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -73,7 +73,7 @@
           R$ {{ tx.value|floatformat:2 }}
         </p>
 
-      </div>
+      </a>
       {% endfor %}
     </div>
     {% endfor %}

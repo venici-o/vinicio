@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Excluir Transação — Organizei{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/transactions/create_transaction.css' %}">
+<link rel="stylesheet" href="{% static 'css/transactions/delete_transaction.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="new_transaction">
+    <header>
+        <span class="back_button">
+            <a class="back_button-link" href="{% url 'transactions:update' transaction.pk %}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+            </a>
+        </span>
+        <h2>Excluir Transação</h2>
+    </header>
+
+    <div class="delete-card glass">
+
+        <div class="delete-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                <path d="M10 11v6M14 11v6"/>
+                <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+            </svg>
+        </div>
+
+        <h3 class="delete-title">Confirmar exclusão</h3>
+        <p class="delete-desc">
+            Essa ação é permanente e não pode ser desfeita.<br>
+            Tem certeza que deseja excluir esta transação?
+        </p>
+
+        <div class="delete-preview input-box">
+            <p class="delete-preview__name">{{ transaction.name }}</p>
+            <p class="delete-preview__value
+                {% if transaction.transaction_type == 'DEPOSIT' %}delete-preview__value--income
+                {% else %}delete-preview__value--expense{% endif %}">
+                {% if transaction.transaction_type == 'DEPOSIT' %}+{% else %}-{% endif %}
+                R$ {{ transaction.value|floatformat:2 }}
+            </p>
+        </div>
+
+        <div class="delete-actions">
+            <a href="{% url 'transactions:update' transaction.pk %}" class="button-glass" id="new-category-btn">
+                Cancelar
+            </a>
+            <form method="post" action="{% url 'transactions:delete' transaction.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="button-glass" id="confirm-delete-btn">
+                    Sim, excluir
+                </button>
+            </form>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}{% endblock %}

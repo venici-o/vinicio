@@ -13,4 +13,6 @@ urlpatterns = [
     
     #criar rota pra criar nova categoria "create_category/"
     path("create_category/", views.create_category, name="create_category"),
+    path("<int:pk>/edit/", views.edit_transaction, name="update"),
+    path("<int:pk>/delete/", views.delete_transaction, name="delete"),
 ]
