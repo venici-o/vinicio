@@ -5,7 +5,7 @@
     top: 0;
     z-index: 100;
     padding-top: 24px;
-    background: #121212;
+    background: var(--bg-base);
 }
 
 .navbar__inner {
@@ -51,13 +51,11 @@
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    border: 0.6px solid rgba(255, 255, 255, 0.8);
+    border: 0.6px solid var(--border-strong);
     text-decoration: none;
     color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
-    transition:
-        background 0.2s,
-        color 0.2s;
+    transition: background 0.2s, color 0.2s;
     flex-shrink: 0;
     background-color: transparent;
 }
@@ -79,7 +77,7 @@
     );
 }
 
-/* Navbar em baixo SÓ FUNCIONA EM MOBILE)*/
+/* Navbar em baixo (SÓ FUNCIONA EM MOBILE) */
 
 .tab-bar {
     display: none;
@@ -110,7 +108,7 @@
 }
 
 .tab-item--active {
-    color: #ffd633;
+    color: var(--color-primary);
 }
 
 .tab-item:not(.tab-item--active):hover {
@@ -130,11 +128,6 @@
 }
 
 @media (max-width: 768px) {
-    .navbar {
-        display: none;
-    }
-
-    .tab-bar {
-        display: flex;
-    }
+    .navbar { display: none; }
+    .tab-bar { display: flex; }
 }

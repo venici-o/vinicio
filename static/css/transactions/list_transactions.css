@@ -1,4 +1,4 @@
-/* Codigo da animação do botão de datas, mexer com cautela */
+/* Animation for date navigation button */
 @keyframes dateSlide {
     0% {
         transform: translateX(var(--slide-x)) scaleY(0.08);
@@ -26,12 +26,13 @@
     --slide-x: -70px;
     animation: dateSlide 0.15s ease-in reverse forwards;
 }
+
 .date-label--exit-right {
     --slide-x: 70px;
     animation: dateSlide 0.15s ease-in reverse forwards;
 }
-/* -------------------------------------------------------- */
 
+/* ── Date nav ───────────────────────────────────── */
 .date-nav {
     display: flex;
     align-items: center;
@@ -39,7 +40,7 @@
     gap: 14px;
     height: 60px;
     padding: 16px 22px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     text-decoration: none;
     width: 278px;
     margin: 0 auto;
@@ -57,9 +58,7 @@
     transition: color 0.2s;
 }
 
-.date-nav__btn:hover {
-    color: #e0e0e0;
-}
+.date-nav__btn:hover { color: var(--text-body); }
 
 .date-nav__btn svg {
     width: 20px;
@@ -78,16 +77,16 @@
     line-height: 1.4;
 }
 
-/* modificadores de cor do stat-value para transações */
+/* Stat value color modifiers for transactions */
 .stat-value--income,
 .stat-value--neutral {
-    color: rgba(48, 194, 29, 0.6);
+    color: rgba(92, 208, 137, 0.6);
 }
 .stat-value--expense {
-    color: rgba(243, 64, 53, 0.4);
+    color: rgba(239, 110, 110, 0.5);
 }
 
-/* ── Section header ─────────────────────────────────── */
+/* ── Section header ─────────────────────────────── */
 .tx-section-header {
     display: flex;
     align-items: center;
@@ -95,7 +94,7 @@
     width: 100%;
 }
 
-/* ── Transaction groups ─────────────────────────────── */
+/* ── Transaction groups ─────────────────────────── */
 .tx-groups {
     display: flex;
     flex-direction: column;
@@ -112,17 +111,17 @@
 .tx-group__label {
     font-size: 24px;
     font-weight: 800;
-    color: #6d6d6d;
+    color: var(--text-dim);
     line-height: 1.5;
 }
 
-/* ── Transaction item ───────────────────────────────── */
+/* ── Transaction item ───────────────────────────── */
 .tx-item {
     display: flex;
     align-items: center;
     width: 100%;
     padding: 16px 16px 16px 22px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     gap: 12px;
 }
 
@@ -155,7 +154,7 @@
         rgba(0, 192, 122, 0.06) 35%,
         rgba(0, 192, 122, 0.02) 22%
     );
-    color: rgba(48, 194, 29, 0.8);
+    color: rgba(92, 208, 137, 0.8);
 }
 
 .tx-item__icon svg {
@@ -215,33 +214,22 @@
     margin: 0;
 }
 
-.tx-item__amount--expense {
-    color: #67201b;
-}
+.tx-item__amount--expense { color: #67201b; }
+.tx-item__amount--income  { color: rgba(92, 208, 137, 0.6); }
 
-.tx-item__amount--income {
-    color: rgba(48, 194, 29, 0.6);
-}
-
-/* ── Empty state ────────────────────────────────────── */
+/* ── Empty state ────────────────────────────────── */
 .tx-empty {
     text-align: center;
     padding: 60px 24px;
-    color: #6d6d6d;
+    color: var(--text-dim);
     font-size: 16px;
     width: 100%;
 }
 
-/* ── Responsive ─────────────────────────────────────── */
+/* ── Responsive ─────────────────────────────────── */
 @media (max-width: 768px) {
-    .tx-section-header {
-        justify-content: center;
-    }
-
-    .tx-group__label {
-        font-size: 18px;
-    }
-
+    .tx-section-header { justify-content: center; }
+    .tx-group__label { font-size: 18px; }
     .button-glass {
         display: flex;
         margin: 0 auto 32px auto;
@@ -250,13 +238,7 @@
 }
 
 @media (max-width: 480px) {
-    .tx-item__name {
-        font-size: 13px;
-    }
-    .tx-item__meta {
-        font-size: 12px;
-    }
-    .tx-item__amount {
-        font-size: 14px;
-    }
+    .tx-item__name   { font-size: 13px; }
+    .tx-item__meta   { font-size: 12px; }
+    .tx-item__amount { font-size: 14px; }
 }

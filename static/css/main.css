@@ -1,7 +1,71 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap");
 
 :root {
+    /* ── Cores da marca ─────────────────────────────────────────────── */
     --color-primary: #ffd633;
+    --color-primary-light: #fde47a;
+    --color-primary-dark: #caa033;
+    --color-primary-bg: rgba(255, 214, 51, 0.08);
+    --color-primary-bg-hover: rgba(255, 214, 51, 0.16);
+    --color-primary-border: rgba(255, 214, 51, 0.25);
+    --color-primary-glow: rgba(255, 214, 51, 0.4);
+
+    /* ── Receitas ───────────────────────────────────── */
+    --color-income: #5cd089;
+    --color-income-bg: rgba(92, 208, 137, 0.09);
+    --color-income-border: rgba(92, 208, 137, 0.22);
+
+    /* ── Gastos ──────────────────────────────────── */
+    --color-expense: #ef6e6e;
+    --color-expense-bg: rgba(239, 110, 110, 0.09);
+    --color-expense-border: rgba(239, 110, 110, 0.22);
+
+    /* ── Aviso ──────────────────────────────────── */
+    --color-warning: #ffa500;
+    --color-warning-bg: rgba(255, 165, 0, 0.07);
+    --color-warning-border: rgba(255, 165, 0, 0.35);
+
+    /* ── Perigo ───────────────────────────────────── */
+    --color-danger: #f34035;
+    --color-danger-bg: rgba(243, 64, 53, 0.07);
+    --color-danger-border: rgba(243, 64, 53, 0.35);
+
+    /* ── Error: Forms ──────────────────── */
+    --color-error: #ff6b6b;
+
+    /* ── Bgs ────────────────────────────────────────── */
+    --bg-base: #121212;
+    --bg-surface: rgba(255, 255, 255, 0.027);
+    --bg-surface-raised: rgba(255, 255, 255, 0.04);
+    --bg-surface-hover: rgba(255, 255, 255, 0.05);
+    --bg-surface-active: rgba(255, 255, 255, 0.025);
+    --bg-input: #222;
+    --bg-tooltip: rgba(20, 20, 22, 0.92);
+
+    /* ── Textos ───────────────────────────────────────────────── */
+    --text-primary: #f5f5f5;
+    --text-body: #e0e0e0;
+    --text-muted: #a8a8ad;
+    --text-dim: #6c6c72;
+    --text-faint: #555;
+
+    /* ── Glass ────────────────────────────────────── */
+    --glass-bg: rgba(255, 255, 255, 0.027);
+    --glass-border-top: rgba(255, 255, 255, 0.4);
+    --glass-border-bottom: rgba(255, 255, 255, 0.3);
+    --glass-shadow: 3px 3px 3px rgba(0, 0, 0, 0.089);
+    --glass-blur: blur(8px);
+    --border-subtle: rgba(255, 255, 255, 0.07);
+    --border-card: rgba(255, 255, 255, 0.1);
+    --border-strong: rgba(255, 255, 255, 0.8);
+
+    /* ── Raios Repetidos ─────────────────────────────────────────────── */
+    --radius-sm: 9px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-2xl: 36px;
+    --radius-pill: 999px;
 }
 
 *,
@@ -13,19 +77,19 @@
 }
 
 body {
-    background: #121212;
+    background: var(--bg-base);
     font-family: "Inter", system-ui, sans-serif;
-    color: #e0e0e0;
+    color: var(--text-body);
     min-height: 100vh;
 }
 
 /* Utilitário para glassmorphism (Usem em containers) */
 .glass {
-    background-color: rgba(255, 255, 255, 0.027);
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.089);
-    backdrop-filter: blur(8px);
+    background-color: var(--glass-bg);
+    border-top: 1px solid var(--glass-border-top);
+    border-bottom: 1px solid var(--glass-border-bottom);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
     transition:
         background 0.2s,
         color 0.2s;
@@ -38,17 +102,17 @@ body {
     justify-content: center;
     height: 52px;
     padding: 0 20px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     text-decoration: none;
     font-size: 16px;
     font-weight: 400;
     white-space: nowrap;
-    color: #e0e0e0;
-    background-color: rgba(255, 255, 255, 0.027);
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.089);
-    backdrop-filter: blur(8px);
+    color: var(--text-body);
+    background-color: var(--glass-bg);
+    border-top: 1px solid var(--glass-border-top);
+    border-bottom: 1px solid var(--glass-border-bottom);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
     transition:
         background 0.2s,
         color 0.2s;
@@ -61,12 +125,12 @@ body {
         #ffffff 100%
     );
     backdrop-filter: blur(3px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    color: #121212;
+    border: 1px solid var(--border-strong);
+    color: var(--bg-base);
 }
 
 .button-glass:not(.button-glass--active):hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--bg-surface-hover);
 }
 
 .main-content {
@@ -79,16 +143,15 @@ body {
     gap: 22px;
 }
 
-/* card centralizado de informações principais */
 .hero-card {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border-radius: 36px;
-    background-color: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(8px);
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-2xl);
+    background-color: var(--bg-surface);
+    backdrop-filter: var(--glass-blur);
+    border-top: 1px solid var(--glass-border-top);
+    border-bottom: 1px solid var(--glass-border-bottom);
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 30px 160px;
 }
@@ -103,7 +166,7 @@ body {
 .stat-label {
     font-size: 24px;
     font-weight: 800;
-    color: #6d6d6d;
+    color: var(--text-dim);
     text-align: center;
     line-height: 1.5;
 }
@@ -115,18 +178,17 @@ body {
     line-height: 1.5;
 }
 
-/* caixa de input/entrada de texto */
 .input-box {
-    background-color: #222;
+    background-color: var(--bg-input);
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 15px;
+    border-radius: var(--radius-md);
     width: 100%;
     color: #ffffff;
     outline: none;
 }
 
-/* Responsividade */
+/* Responsive */
 @media (max-width: 1200px) {
     .hero-card {
         padding: 30px 80px;

@@ -23,26 +23,24 @@
     width: 34px;
     height: 34px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.05);
-    color: #a0a0a0;
+    border: 1px solid var(--border-card);
+    background: var(--bg-surface-hover);
+    color: var(--text-muted);
     cursor: pointer;
     text-decoration: none;
-    transition:
-        background 0.15s,
-        color 0.15s;
+    transition: background 0.15s, color 0.15s;
     flex-shrink: 0;
 }
 
 .mov-icon-btn:hover {
     background: rgba(255, 255, 255, 0.1);
-    color: #e0e0e0;
+    color: var(--text-body);
 }
 
 .mov-title {
     font-size: 15px;
     font-weight: 500;
-    color: #e0e0e0;
+    color: var(--text-body);
 }
 
 .mov-balance {
@@ -56,7 +54,7 @@
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #6c6c72;
+    color: var(--text-dim);
 }
 
 .mov-balance-amount {
@@ -66,12 +64,8 @@
     line-height: 1;
 }
 
-.mov-balance-amount-positive {
-    color: var(--color-primary);
-}
-.mov-balance-amount-negative {
-    color: #f34035;
-}
+.mov-balance-amount-positive { color: var(--color-primary); }
+.mov-balance-amount-negative { color: var(--color-danger); }
 
 .mov-change {
     display: flex;
@@ -84,33 +78,33 @@
     align-items: center;
     gap: 4px;
     padding: 4px 10px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     font-size: 13px;
     font-weight: 600;
 }
 
 .mov-change-badge-up {
-    background: rgba(34, 197, 94, 0.18);
-    color: #4ade80;
+    background: var(--color-income-bg);
+    color: var(--color-income);
 }
 
 .mov-change-badge-down {
-    background: rgba(243, 64, 53, 0.18);
-    color: #f87171;
+    background: var(--color-expense-bg);
+    color: var(--color-expense);
 }
 
 .mov-change-label {
     font-size: 13px;
-    color: #6c6c72;
+    color: var(--text-dim);
 }
 
 .mov-split-bar {
     position: relative;
     height: 8px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-pill);
+    background: var(--bg-surface-raised);
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-card);
 }
 
 .mov-split-bar-income,
@@ -123,15 +117,15 @@
 
 .mov-split-bar-income {
     left: 0;
-    background: linear-gradient(90deg, rgba(92, 208, 137, 0.5), #5cd089);
-    box-shadow: inset 0 0 10px rgba(92, 208, 137, 0.3);
+    background: linear-gradient(90deg, rgba(92, 208, 137, 0.5), var(--color-income));
+    box-shadow: inset 0 0 10px var(--color-income-bg);
     animation: growFromLeft 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
 }
 
 .mov-split-bar-expense {
     right: 0;
-    background: linear-gradient(270deg, rgba(239, 110, 110, 0.5), #ef6e6e);
-    box-shadow: inset 0 0 10px rgba(239, 110, 110, 0.25);
+    background: linear-gradient(270deg, rgba(239, 110, 110, 0.5), var(--color-expense));
+    box-shadow: inset 0 0 10px var(--color-expense-bg);
     animation: growFromRight 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
 }
 
@@ -165,7 +159,7 @@
     align-items: center;
     gap: 6px;
     font-size: 13px;
-    color: #6c6c72;
+    color: var(--text-dim);
 }
 
 .mov-flow-dot {
@@ -175,22 +169,18 @@
     flex-shrink: 0;
 }
 
-.mov-flow-dot-income {
-    background: #22c55e;
-}
-.mov-flow-dot-expense {
-    background: #f34035;
-}
+.mov-flow-dot-income { background: var(--color-income); }
+.mov-flow-dot-expense { background: var(--color-danger); }
 
 .mov-flow-amount {
     font-size: 16px;
     font-weight: 600;
-    color: #e0e0e0;
+    color: var(--text-body);
 }
 
 .mov-empty {
     font-size: 14px;
-    color: #555;
+    color: var(--text-faint);
     text-align: center;
     padding: 8px 0;
 }
@@ -199,10 +189,10 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-md);
     padding: 14px;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-surface);
 }
 
 .mov-budget-header {
@@ -216,7 +206,7 @@
     align-items: center;
     gap: 8px;
     font-size: 14px;
-    color: #a0a0a0;
+    color: var(--text-muted);
 }
 
 .mov-budget-pct {
@@ -224,15 +214,9 @@
     font-weight: 700;
 }
 
-.mov-budget-pct-ok {
-    color: #4ade80;
-}
-.mov-budget-pct-warning {
-    color: #ffa500;
-}
-.mov-budget-pct-exceeded {
-    color: #f34035;
-}
+.mov-budget-pct-ok      { color: var(--color-income); }
+.mov-budget-pct-warning { color: var(--color-warning); }
+.mov-budget-pct-exceeded { color: var(--color-danger); }
 
 .mov-budget-alert {
     display: flex;
@@ -244,48 +228,42 @@
 }
 
 .mov-budget-alert-warning {
-    border: 1px solid rgba(255, 165, 0, 0.35);
-    background: rgba(255, 165, 0, 0.07);
-    color: #ffa500;
+    border: 1px solid var(--color-warning-border);
+    background: var(--color-warning-bg);
+    color: var(--color-warning);
 }
 
 .mov-budget-alert-exceeded {
-    border: 1px solid rgba(243, 64, 53, 0.35);
-    background: rgba(243, 64, 53, 0.07);
-    color: #f34035;
+    border: 1px solid var(--color-danger-border);
+    background: var(--color-danger-bg);
+    color: var(--color-danger);
 }
 
 .mov-budget-bar {
     height: 6px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-pill);
+    background: var(--border-card);
     overflow: hidden;
 }
 
 .mov-budget-bar-fill {
     height: 100%;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.mov-budget-bar-fill-ok {
-    background: rgba(48, 194, 29, 0.7);
-}
-.mov-budget-bar-fill-warning {
-    background: #ffa500;
-}
-.mov-budget-bar-fill-exceeded {
-    background: rgba(243, 64, 53, 0.7);
-}
+.mov-budget-bar-fill-ok       { background: rgba(92, 208, 137, 0.7); }
+.mov-budget-bar-fill-warning  { background: var(--color-warning); }
+.mov-budget-bar-fill-exceeded { background: rgba(243, 64, 53, 0.7); }
 
 .mov-budget-footer {
     display: flex;
     justify-content: space-between;
     font-size: 13px;
-    color: #6c6c72;
+    color: var(--text-dim);
 }
 
 .mov-budget-footer strong {
-    color: #e0e0e0;
+    color: var(--text-body);
     font-weight: 600;
 }

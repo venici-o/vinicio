@@ -9,13 +9,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 32px;
+    border-radius: var(--radius-2xl);
     padding: 48px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-surface-hover);
+    border: 1px solid var(--border-card);
     text-align: center;
     margin-bottom: 24px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: var(--glass-blur);
 }
 
 .budget-hero__label {
@@ -53,8 +53,8 @@
 .budget-progress__bar-bg {
     width: 100%;
     height: 16px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 999px;
+    background: var(--border-card);
+    border-radius: var(--radius-pill);
     overflow: hidden;
 }
 
@@ -63,12 +63,12 @@
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.bg-success { background: rgba(48, 194, 29, 0.6); }
-.bg-warning { background: #ffa500; }
+.bg-success { background: rgba(92, 208, 137, 0.6); }
+.bg-warning { background: var(--color-warning); }
 .bg-danger  { background: rgba(243, 64, 53, 0.6); }
 
-.color-warning { color: #ffa500; }
-.color-danger  { color: #f34035; }
+.color-warning { color: var(--color-warning); }
+.color-danger  { color: var(--color-danger); }
 
 .budget-status-msg {
     margin-top: 12px;
@@ -118,7 +118,7 @@
 }
 
 .button-glass--primary {
-    border: 0.6px solid rgba(255, 255, 255, 0.8) !important;
+    border: 0.6px solid var(--border-strong) !important;
     background: rgba(255, 255, 255, 0.1) !important;
     cursor: pointer;
 }
@@ -140,9 +140,9 @@
 
 .budget-input-large {
     background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 24px 60px; /* Espaço para prefixo e setas customizadas */
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    padding: 24px 60px;
     color: white;
     font-size: 32px;
     text-align: center;
@@ -150,7 +150,7 @@
     outline: none;
     transition: border-color 0.2s;
     appearance: none;
-    -moz-appearance: textfield; /* Esconde setas no Firefox */
+    -moz-appearance: textfield;
 }
 
 .budget-input-large::-webkit-outer-spin-button,
@@ -173,8 +173,8 @@
 }
 
 .control-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-surface-hover);
+    border: 1px solid var(--border-card);
     border-radius: 6px;
     color: rgba(255, 255, 255, 0.3);
     cursor: pointer;
