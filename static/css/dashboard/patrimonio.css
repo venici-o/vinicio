@@ -1,0 +1,424 @@
+.pat {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.pat-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.pat-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-sm);
+    display: grid;
+    place-items: center;
+    background: var(--bg-surface-raised);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.pat-icon svg {
+    width: 14px;
+    height: 14px;
+}
+
+.pat-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.pat-period-pills {
+    display: flex;
+    gap: 2px;
+    padding: 4px;
+    background: var(--bg-surface-active);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-pill);
+}
+
+.pat-period-btn {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--text-dim);
+    transition: color 0.2s ease;
+}
+
+.pat-period-btn:hover {
+    color: var(--text-primary);
+}
+
+.pat-period-btn.active {
+    color: #1a1500;
+    background: linear-gradient(
+        180deg,
+        var(--color-primary-light),
+        var(--color-primary)
+    );
+    box-shadow:
+        0 4px 12px -4px var(--color-primary-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.pat-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.pat-link:hover {
+    color: var(--color-primary);
+}
+
+.pat-link svg {
+    width: 11px;
+    height: 11px;
+}
+
+.pat-stats {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.pat-value {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.pat-currency {
+    font-size: 0.46em;
+    color: var(--text-dim);
+    font-weight: 500;
+    margin-right: 6px;
+    letter-spacing: 0;
+    vertical-align: 0.2em;
+}
+
+.pat-chip-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.pat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+.pat-chip svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+}
+
+.pat-chip-up {
+    background: var(--color-income-bg);
+    color: var(--color-income);
+    border: 1px solid var(--color-income-border);
+}
+
+.pat-chip-down {
+    background: var(--color-expense-bg);
+    color: var(--color-expense);
+    border: 1px solid var(--color-expense-border);
+}
+
+.pat-chip-sub {
+    color: var(--text-dim);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+}
+
+.pat-chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-top: 4px;
+}
+
+.pat-chart-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+.pat-grid-line {
+    stroke: rgba(255, 255, 255, 0.05);
+    stroke-width: 1;
+}
+
+.pat-axis-text {
+    fill: var(--text-dim);
+    font-family: ui-monospace, "Geist Mono", monospace;
+    font-size: 11px;
+    font-feature-settings: "tnum";
+}
+
+.pat-area {
+    opacity: 0;
+    animation: patAreaFade 1.4s ease-out 0.9s forwards;
+}
+
+@keyframes patAreaFade {
+    to {
+        opacity: 1;
+    }
+}
+
+.pat-line-glow {
+    stroke: var(--color-primary);
+    stroke-width: 8;
+    fill: none;
+    opacity: 0.18;
+    filter: blur(6px);
+    stroke-linecap: round;
+}
+
+.pat-line {
+    stroke: url(#patLineGrad);
+    stroke-width: 2.4;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 6px rgba(255, 214, 51, 0.35));
+    stroke-dasharray: var(--pat-len);
+    stroke-dashoffset: var(--pat-len);
+    animation: patDraw 1.5s cubic-bezier(0.5, 0.05, 0.2, 1) forwards;
+}
+
+@keyframes patDraw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.pat-dot {
+    fill: var(--color-primary);
+    filter: drop-shadow(0 0 8px rgba(255, 214, 51, 0.7));
+    opacity: 0;
+    animation: patAppear 0.4s ease-out 2s forwards;
+}
+
+.pat-dot-pulse {
+    fill: rgba(255, 214, 51, 0.3);
+    transform-origin: center;
+    opacity: 0;
+    animation:
+        patAppear 0.4s ease-out 2s forwards,
+        patPing 2s ease-out 2.4s infinite;
+}
+
+@keyframes patAppear {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes patPing {
+    0% {
+        r: 5;
+        opacity: 0.6;
+    }
+    100% {
+        r: 14;
+        opacity: 0;
+    }
+}
+
+.pat-crosshair {
+    position: absolute;
+    top: 0;
+    bottom: 36px;
+    width: 1px;
+    background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(255, 214, 51, 0.5) 20%,
+        rgba(255, 214, 51, 0.5) 80%,
+        transparent
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 5;
+}
+
+.pat-hover-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow:
+        0 0 0 4px rgba(255, 214, 51, 0.18),
+        0 0 12px rgba(255, 214, 51, 0.6);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 6;
+}
+
+.pat-tooltip {
+    position: absolute;
+    transform: translate(-50%, calc(-100% - 14px));
+    background: var(--bg-tooltip);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-card);
+    border-radius: 14px;
+    padding: 10px 14px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 7;
+    white-space: nowrap;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.pat-tooltip::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background: var(--bg-tooltip);
+    border-right: 1px solid var(--border-card);
+    border-bottom: 1px solid var(--border-card);
+}
+
+.pat-tt-date {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 500;
+    margin-bottom: 3px;
+    letter-spacing: 0.02em;
+}
+
+.pat-tt-value {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.pat-chart-wrap.active .pat-crosshair,
+.pat-chart-wrap.active .pat-hover-dot,
+.pat-chart-wrap.active .pat-tooltip {
+    opacity: 1;
+}
+
+.pat-chart-wrap.pat-loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.pat-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-dim);
+}
+
+.pat-empty svg {
+    width: 40px;
+    height: 40px;
+    opacity: 0.3;
+}
+
+.pat-empty p {
+    font-size: 14px;
+}
+
+.pat-empty-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: var(--radius-pill);
+    background: var(--color-primary-bg);
+    border: 1px solid var(--color-primary-border);
+    color: var(--color-primary);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.pat-empty-cta:hover {
+    background: var(--color-primary-bg-hover);
+}
+
+@media (max-width: 900px) {
+    .pat-value {
+        font-size: 38px;
+    }
+    .pat-chart-wrap {
+        height: 240px;
+    }
+}
+
+@media (max-width: 720px) {
+    .pat-value {
+        font-size: 32px;
+    }
+    .pat-chart-wrap {
+        height: 200px;
+    }
+    .pat-period-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+    .pat-actions {
+        gap: 10px;
+    }
+}
