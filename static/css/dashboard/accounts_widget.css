@@ -1,0 +1,122 @@
+.acc {
+    display: grid;
+    gap: 20px;
+}
+
+.acc .cat__link {
+    min-height: 34px;
+    padding: 0 12px;
+    background: transparent;
+    border-color: var(--border-card);
+}
+
+.acc .cat__title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.acc .cat__title-icon {
+    border-radius: 10px;
+}
+
+.acc .cat__title-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.acc__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.acc__item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface-raised);
+    border: 1px solid var(--border-subtle);
+}
+
+.acc__icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: var(--color-primary-bg);
+    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex: 0 0 auto;
+}
+
+.acc__content {
+    min-width: 0;
+    display: grid;
+    gap: 6px;
+}
+
+.acc__topline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.acc__bank {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.acc__type {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 0 10px;
+    border-radius: var(--radius-pill);
+    background: var(--color-primary);
+    color: var(--bg-base);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.acc__label {
+    color: var(--text-body);
+    font-size: 14px;
+}
+
+.acc__meta {
+    display: flex;
+    gap: 10px 14px;
+    flex-wrap: wrap;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.acc__empty {
+    display: grid;
+    justify-items: start;
+    gap: 14px;
+    color: var(--text-muted);
+}
+
+.acc__empty-cta {
+    color: var(--color-primary);
+    background: transparent;
+    border: 1px solid var(--color-primary-border);
+}
+
+@media (max-width: 768px) {
+    .acc__list {
+        grid-template-columns: 1fr;
+    }
+
+    .acc .cat__title {
+        font-size: 18px;
+    }
+}

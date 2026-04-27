@@ -37,19 +37,27 @@
     color: var(--text-faint);
 }
 
+.dashboard-stack {
+    display: grid;
+    gap: 22px;
+}
+
 .dashboard-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 22px;
 }
 
-.dashboard-card--full {
-    grid-column: 1 / -1;
+.dashboard-card--movimentacao {
+    min-width: 0;
+}
+
+.dashboard-card--categorias {
+    min-width: 0;
 }
 
 @media (max-width: 768px) {
     .dashboard-grid { grid-template-columns: 1fr; }
-    .dashboard-card--full { grid-column: 1; }
 }
 
 .dashboard-card {

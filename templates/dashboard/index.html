@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="{% static 'css/dashboard/movimentacao.css' %}">
 <link rel="stylesheet" href="{% static 'css/dashboard/categories.css' %}">
 <link rel="stylesheet" href="{% static 'css/dashboard/metas.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard/accounts_widget.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -29,24 +30,28 @@
   </div>
   {% endif %}
 
-  <div class="dashboard-grid">
-
-    <section class="dashboard-card dashboard-card--full" aria-label="Patrimônio">
+  <div class="dashboard-stack">
+    <section class="dashboard-card dashboard-card--patrimonio" aria-label="Patrimônio">
       {% include "dashboard/partials/patrimonio.html" %}
     </section>
 
-    <section class="dashboard-card dashboard-card--movimentacao" aria-label="Movimentação">
-      {% include "dashboard/partials/movimentacao.html" %}
+    <section class="dashboard-card dashboard-card--accounts" aria-label="Contas registradas">
+      {% include "dashboard/partials/accounts_widget.html" %}
     </section>
 
-    <section class="dashboard-card dashboard-card--categorias" aria-label="Principais categorias">
-      {% include "dashboard/partials/categorias.html" %}
-    </section>
+    <div class="dashboard-grid">
+      <section class="dashboard-card dashboard-card--movimentacao" aria-label="Movimentação">
+        {% include "dashboard/partials/movimentacao.html" %}
+      </section>
 
-    <section class="dashboard-card dashboard-card--full" aria-label="Metas">
+      <section class="dashboard-card dashboard-card--categorias" aria-label="Principais categorias">
+        {% include "dashboard/partials/categorias.html" %}
+      </section>
+    </div>
+
+    <section class="dashboard-card dashboard-card--metas" aria-label="Metas">
       {% include "dashboard/partials/metas.html" %}
     </section>
-
   </div>
 
 </main>

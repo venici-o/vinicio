@@ -1,32 +1,58 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block title %}Contas Registradas — Organizei{% endblock %}
-
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/bank_accounts/bank_accounts.css' %}">
 {% endblock %}
-
 {% block content %}
+
 <main class="main-content">
-
-    <div class="accounts-container">
-
-        <h1 class="title">Contas Registradas</h1>
-
-        <div class="accounts-card glass">
-            <p class="tx-empty">
-                Você ainda não cadastrou nenhuma conta.
-            </p>
+  <div class="accounts-container">
+    <h1 class="title">Contas Registradas</h1>
+    <div class="accounts-card glass">
+      {% for conta in contas %}
+        <div class="account-item">
+          <div class="account-main">
+            <div class="account-topline">
+              <span class="account-bank">
+                <span class="account-bank-icon" aria-hidden="true">
+                  {{ conta.bank.name|slice:":1"|upper }}
+                </span>
+                <span>{{ conta.bank.name|title }}</span>
+              </span>
+              <span class="account-type">{{ conta.get_account_type_display }}</span>
+            </div>
+            <div class="account-label">
+              {% if conta.nickname %}
+                {{ conta.nickname|title }}
+              {% else %}
+                Conta cadastrada
+              {% endif %}
+            </div>
+            <div class="account-meta">
+              {% if conta.agency %}
+                <span>Ag. {{ conta.agency }}</span>
+              {% endif %}
+              <span class="account-number">Conta {{ conta.number }}</span>
+            </div>
+          </div>
+          <form method="POST" action="{% url 'delete_account' conta.id %}" class="account-delete-form">
+            {% csrf_token %}
+            <button type="submit" class="account-delete-btn" title="Excluir conta" aria-label="Excluir conta">
+              Excluir
+            </button>
+          </form>
         </div>
-
-       <div class="button-area">
-            <a href="{% url 'register_account' %}" class="button-glass">
-            + Adicionar Conta
-            </a>
-        </div>
-
+      {% empty %}
+        <p class="tx-empty">Você ainda não cadastrou nenhuma conta.</p>
+      {% endfor %}
     </div>
-
+    <div class="button-area">
+      <a href="{% url 'register_account' %}" class="button-glass">
+        + Adicionar Conta
+      </a>
+    </div>
+  </div>
 </main>
+
 {% endblock %}

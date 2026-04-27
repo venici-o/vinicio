@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Cadastro Manual — Organizei{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/bank_accounts/register_manual.css' %}">
+{% endblock %}
+{% block content %}
+<main class="main-content manual-page">
+  <div class="manual-container">
+    <section class="manual-hero">
+      <div class="page-title-row">
+        <a href="{% url 'register_account' %}" class="back-link" aria-label="Voltar">&lt;</a>
+        <h1 class="title">Cadastro Manual</h1>
+      </div>
+      <p class="manual-copy">Preencha os dados da conta para ela aparecer direitinho na sua lista de contas registradas.</p>
+    </section>
+      <div class="manual-card glass">
+        <form method="POST" class="manual-form">
+          {% csrf_token %}
+          <div class="manual-section">
+            <span class="manual-label">Tipo da conta</span>
+            <div class="type-selector">
+              <label class="type-option">
+                <input type="radio" name="account_type" value="corrente" {% if account_type == "corrente" or not account_type %}checked{% endif %}>
+                <span>Conta Corrente</span>
+              </label>
+              <label class="type-option">
+                <input type="radio" name="account_type" value="poupanca" {% if account_type == "poupanca" %}checked{% endif %}>
+                <span>Poupança</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="manual-grid">
+            <label class="field">
+              <span>Banco</span>
+              <input type="text" name="bank" placeholder="Ex.: Nubank" required>
+            </label>
+
+            <label class="field">
+              <span>Agência</span>
+              <input type="text" name="agency" placeholder="Ex.: 0001">
+            </label>
+
+            <label class="field field--full">
+              <span>Apelido da Conta</span>
+              <input type="text" name="nickname" placeholder="Ex.: Conta do dia a dia">
+            </label>
+
+            <label class="field field--full">
+              <span>Número da Conta</span>
+              <input type="text" name="number" placeholder="Digite o número da conta" required>
+            </label>
+          </div>
+
+          <div class="manual-actions">
+            <a href="{% url 'bank_accounts' %}" class="button-glass button-glass--secondary">Cancelar</a>
+            <button type="submit" class="button-glass button-glass--active">Confirmar</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</main>
+{% endblock %}

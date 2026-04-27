@@ -8,30 +8,26 @@
 {% endblock %}
 
 {% block content %}
-<main class="main-content">
-
+<main class="main-content accounts-auth-page">
     <div class="auth-container">
-        <h1 class="title">Registrar Conta</h1>
-
+        <div class="page-title-row">
+            <a href="{% url 'bank_accounts' %}" class="back-link" aria-label="Voltar">&lt;</a>
+            <h1 class="title">Registrar Conta</h1>
+        </div>
         <div class="auth-card glass">
-
-            <h2 class="subtitle">
-                Como deseja autenticar sua conta?
-            </h2>
-
-            <div class="auth-buttons ">
-                <a href="{% url 'register_manual' %}" class="btn-primary">
-                    Manual
+            <h2 class="subtitle" style="text-align: center;">Como deseja conectar sua conta?</h2>
+            <p class="auth-copy" style="text-align: center;">Cadastre manualmente em poucos campos ou siga depois para uma integração automática.</p>
+            <div class="auth-buttons">
+                <a href="{% url 'register_manual' %}" class="auth-option auth-option--manual">
+                    <span class="auth-option__title">Manual</span>
+                    <span class="auth-option__text">Ideal para inserir banco, agência, apelido e número da conta.</span>
                 </a>
-
-                <a href="{% url 'register_auto' %}" class="btn-primary">
-                    Automático
+                <a href="{% url 'register_auto' %}" class="auth-option auth-option--auto">
+                    <span class="auth-option__title">Automático</span>
+                    <span class="auth-option__text">Perfeito para conectar com menos digitação quando a integração estiver pronta.</span>
                 </a>
             </div>
-
         </div>
-
     </div>
-
 </main>
 {% endblock %}
