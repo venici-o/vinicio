@@ -134,6 +134,9 @@ Foram selecionadas 4 histórias para implementação nesta entrega:
 ### Screencast com as histórias implementadas
 [Link para o vídeo screencast]()
 
+#### Screencast testando as histórias implementadas via testes E2E:
+[Link]()
+
 ### Programação em par (atualização)
 Nosso grupo seguiu o mesmo procedimento da entrega anterior, com três duplas e cada uma com uma história para implementar, exceto uma dupla que ficou com duas histórias. Porém, independente desta divisão, os componentes do grupo como um todo ajudaram-se uns aos outros.
 
