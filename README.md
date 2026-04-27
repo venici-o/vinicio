@@ -128,7 +128,7 @@ Dividimos o grupo em três duplas, com cada dupla responsável por uma história
 ---
 
 <details>
-<summary><h2>Entrega 03 — 27/04/2026</h2></summary>
+<summary><h2>Entrega 03 ✅ — 27/04/2026</h2></summary>
 
 ### Histórias Implementadas (Sprint 2)
 
@@ -140,6 +140,7 @@ Foram selecionadas 4 histórias para implementação nesta entrega:
 4. Categorizar transações
 
 ### JIRA - Sprint 02
+<img width="2289" height="873" alt="screenshot-2026-04-27_19-34-33" src="https://github.com/user-attachments/assets/f2d95c3d-2692-4303-be29-7c0f5edf97ca" />
 
 ### Screencast com as histórias implementadas
 
@@ -171,13 +172,15 @@ Algumas dessas issues inclui a melhora de alguma funcionalidade do sistema e alg
 
 <img width="1198" height="385" alt="image" src="https://github.com/user-attachments/assets/c621cb67-5671-4166-9c75-aa9830e023db" />
 
-### Quadro da Sprint 3
 
 #### Quadro da Sprint 3 + Backlog atualizado
+<img width="2290" height="1335" alt="screenshot-2026-04-27_19-39-06" src="https://github.com/user-attachments/assets/4ece9428-2d11-4e7f-9ec8-eba6cfd630ff" />
 
 #### Board da Sprint 3
+<img width="2286" height="561" alt="screenshot-2026-04-27_19-50-32" src="https://github.com/user-attachments/assets/cf5d14cc-6cf1-47ef-8646-5726f38aadf4" />
 
 </details>
+
 
 ---
 
