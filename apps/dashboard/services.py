@@ -88,7 +88,7 @@ def _budget_status_for(user, month: date, expense: Decimal):
     }
 
 def _enrich_priority_goal(goal, today: date) -> None:
-    current_amount = getattr(goal, "_current_amount", goal.current_amount)
+    current_amount = getattr(goal, "cached_amount", goal.current_amount)
     days_remaining = (goal.deadline - today).days
     months_remaining = max(1, math.ceil(days_remaining / 30))
     remaining = max(Decimal("0"), goal.target_amount - current_amount)
@@ -332,9 +332,9 @@ def build_dashboard_context(user) -> dict:
 
     # logica pra reduzir numero de queries
     for goal in all_incomplete:
-        goal._current_amount = sum(c.amount for c in goal.contributions.all())
-        goal._progress_percent = (
-            min(float(goal._current_amount / goal.target_amount * 100), 100.0)
+        goal.cached_amount = sum(c.amount for c in goal.contributions.all())
+        goal.cached_progress = (
+            min(float(goal.cached_amount / goal.target_amount * 100), 100.0)
             if goal.target_amount
             else 0.0
         )
