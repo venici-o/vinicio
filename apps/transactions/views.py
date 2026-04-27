@@ -207,7 +207,7 @@ def edit_transaction(request, pk):
     form_data = {
         'name': transaction.name,
         'transaction_type': transaction.transaction_type,
-        'value': str(transaction.value),
+        'value': str(transaction.value).replace('.', ','),
         'category_id': str(transaction.category.pk) if transaction.category else '',
     }
     context = _build_edit_transaction_context(request.user, transaction, form_data=form_data)

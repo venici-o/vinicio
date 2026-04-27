@@ -11,6 +11,8 @@
         this.value = intPart + decPart;
     });
 
+    if (input.value) input.dispatchEvent(new Event('input'));
+
     input.closest('form').addEventListener('submit', function () {
         input.value = input.value.replace(/\./g, '');
     });
