@@ -10,7 +10,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            next_url = request.POST.get("next") or request.GET.get("next") or "/metas/"
+            next_url = request.POST.get("next") or request.GET.get("next") or "/dashboard/"
             return redirect(next_url)
         error = "Usuário ou senha inválidos."
     return render(request, "registration/login.html", {"error": error})
