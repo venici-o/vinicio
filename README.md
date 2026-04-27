@@ -14,7 +14,8 @@ Aplicação web de gestão financeira pessoal: controle de gastos, investimentos
 
 ---
 
-## Entrega 01 ✅ — 09/03/2026
+<details>
+<summary><h2>Entrega 01 ✅ — 09/03/2026</h2></summary>
 
 ### Histórias de Usuário
 
@@ -36,9 +37,12 @@ Protótipos de baixa fidelidade no Figma cobrindo 5 histórias:
 Apresentação do protótipo com áudio e legenda:
 [Assistir no YouTube](https://youtu.be/tkBOIxoyT6g)
 
+</details>
+
 ---
 
-## Entrega 02 ✅ — 30/03/2026
+<details>
+<summary><h2>Entrega 02 ✅ — 30/03/2026</h2></summary>
 
 ### Histórias Implementadas (Sprint 1)
 
@@ -49,6 +53,7 @@ Foram selecionadas 3 histórias para implementação nesta entrega:
 3. Estabelecer objetivos/metas de consumo
 
 ### JIRA — Sprint 01
+
 [Acessar Sprint 01 no JIRA](https://organizei.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)
 
 ### Issue/Bug Tracker (GitHub)
@@ -71,14 +76,13 @@ Os problemas e sugestões foram classificados de acordo com categorias (bug, enh
 
 Para fins de teste, utilize as credenciais abaixo (sistema de registro ainda não implementado):
 
-| Campo | Valor |
-|-------|-------|
+| Campo   | Valor   |
+| ------- | ------- |
 | Usuário | `admin` |
-| Senha | `1234` |
+| Senha   | `1234`  |
 
 #### Screencast — Sistema em produção
 
-<!-- adicionar link do youtube — a URL do deploy deve aparecer durante todo o vídeo -->
 [Assistir no YouTube](https://youtu.be/PJ50jg6RfzQ)
 
 ### Programação em Par
@@ -87,38 +91,45 @@ Dividimos o grupo em três duplas, com cada dupla responsável por uma história
 
 1. **Registrar entradas e saídas financeiras — Larissa e Gabriel**
 
-    O desenvolvimento foi iniciado com a criação do modelo referente ao formulário de inserção de uma nova transação. A implementação ocorreu de forma colaborativa e alternada, à medida que cada etapa do código era concluída.
+   O desenvolvimento foi iniciado com a criação do modelo referente ao formulário de inserção de uma nova transação. A implementação ocorreu de forma colaborativa e alternada, à medida que cada etapa do código era concluída.
 
-    Inicialmente, Larissa ficou responsável pela construção do formulário em HTML e pela implementação das rotas do tipo POST. Em seguida, Gabriel deu continuidade ao trabalho, finalizando a rota do tipo GET e realizando as demais integrações necessárias com o banco de dados.
+   Inicialmente, Larissa ficou responsável pela construção do formulário em HTML e pela implementação das rotas do tipo POST. Em seguida, Gabriel deu continuidade ao trabalho, finalizando a rota do tipo GET e realizando as demais integrações necessárias com o banco de dados.
 
-    Posteriormente, os demais integrantes conduziram a revisão das alterações, promovendo ajustes relacionados à integração com outras partes do sistema, incluindo interfaces e rotas do projeto.
+   Posteriormente, os demais integrantes conduziram a revisão das alterações, promovendo ajustes relacionados à integração com outras partes do sistema, incluindo interfaces e rotas do projeto.
 
 2. **Impor limites de gastos — Vinícius e Heitor**
 
-    O desenvolvimento foi iniciado com a implementação de um app budget para a definição de limites de gastos, com data específica e tracking em tempo real do fluxo monetário das contas registradas. A implementação ocorreu de forma colaborativa e alternada, consistindo na intercalação de funções e participação efetiva da dupla na construção do código.
+   O desenvolvimento foi iniciado com a implementação de um app budget para a definição de limites de gastos, com data específica e tracking em tempo real do fluxo monetário das contas registradas. A implementação ocorreu de forma colaborativa e alternada, consistindo na intercalação de funções e participação efetiva da dupla na construção do código.
 
-    Com a implementação do app e a definição de funcionalidades sendo feito por Heitor, houve a colaboração da dupla para o estabelecimento de um sistema efetivo, funcional e agradável, contando com implementações de requerimento de login, rota de URL e aprimoramento do front-end por Vinicius.   
+   Com a implementação do app e a definição de funcionalidades sendo feito por Heitor, houve a colaboração da dupla para o estabelecimento de um sistema efetivo, funcional e agradável, contando com implementações de requerimento de login, rota de URL e aprimoramento do front-end por Vinicius.
 
-    Por fim, os demais integrantes conduziram a revisão das alterações, promovendo ajustes de integração com outras partes do sistema.
+   Por fim, os demais integrantes conduziram a revisão das alterações, promovendo ajustes de integração com outras partes do sistema.
 
 3. **Estabelecer objetivos/metas de consumo — Ariel e Euclides**
 
-    O desenvolvimento foi iniciado com base no modelo do formulário de estabelecer objetivo/meta de consumo. A implementação ocorreu de forma colaborativa e alternada: em cada entrega, um integrante ficou responsável pelo backend enquanto o outro cuidava do frontend.
+   O desenvolvimento foi iniciado com base no modelo do formulário de estabelecer objetivo/meta de consumo. A implementação ocorreu de forma colaborativa e alternada: em cada entrega, um integrante ficou responsável pelo backend enquanto o outro cuidava do frontend.
 
-    Euclides ficou encarregado da construção do app goals no Django, desenvolvendo os códigos do backend e integrando-os ao HTML. Em seguida, Ariel deu continuidade ao trabalho refinando a interface visual com CSS e reorganizando a estrutura do HTML.
+   Euclides ficou encarregado da construção do app goals no Django, desenvolvendo os códigos do backend e integrando-os ao HTML. Em seguida, Ariel deu continuidade ao trabalho refinando a interface visual com CSS e reorganizando a estrutura do HTML.
 
-    Por fim, os demais integrantes conduziram a revisão das alterações, promovendo ajustes de integração com outras partes do sistema.
+   Por fim, os demais integrantes conduziram a revisão das alterações, promovendo ajustes de integração com outras partes do sistema.
 
 ### Quadro da Sprint 02
+
 #### Quadro Sprint 2 + Backlog Atualizado
+
 <img width="1986" height="946" alt="image" src="https://github.com/user-attachments/assets/d732909f-4623-4b19-8c7b-e2c896124302" />
 
 #### Board da Sprint 2
+
 <img width="1975" height="345" alt="image" src="https://github.com/user-attachments/assets/bd3824a6-452b-4d01-9dd5-a65566b2cc71" />
+
+</details>
 
 ---
 
-## Entrega 03 — 30/03/2026
+<details>
+<summary><h2>Entrega 03 — 27/04/2026</h2></summary>
+
 ### Histórias Implementadas (Sprint 2)
 
 Foram selecionadas 4 histórias para implementação nesta entrega:
@@ -129,35 +140,44 @@ Foram selecionadas 4 histórias para implementação nesta entrega:
 4. Categorizar transações
 
 ### JIRA - Sprint 02
-[Acessar Sprint 02 no Jira](https://organizei.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)
 
 ### Screencast com as histórias implementadas
+
 [Link para o vídeo screencast]()
 
 #### Screencast testando as histórias implementadas via testes E2E:
+
 [Link]()
 
 ### Programação em par (atualização)
+
 Nosso grupo seguiu o mesmo procedimento da entrega anterior, com três duplas e cada uma com uma história para implementar, exceto uma dupla que ficou com duas histórias. Porém, independente desta divisão, os componentes do grupo como um todo ajudaram-se uns aos outros.
 
 ### Issues/Bug tracker (GitHub)
+
 #### Milestone da Sprint 2:
+
 <img width="1161" height="414" alt="image" src="https://github.com/user-attachments/assets/bdeae1e8-8b7e-4986-a712-70b63aa9ad2b" />
 
 #### Issues resolvidas:
+
 Estão incluidas funcionalidades em falta e bugs que foram encontrados ao longo do uso da aplicação.
 
 <img width="1204" height="517" alt="image" src="https://github.com/user-attachments/assets/b574b329-7b84-4f60-8145-8758fda262b1" />
 
 #### Issues em aberto:
+
 Algumas dessas issues inclui a melhora de alguma funcionalidade do sistema e alguns bugs não resolvidos.
 
 <img width="1198" height="385" alt="image" src="https://github.com/user-attachments/assets/c621cb67-5671-4166-9c75-aa9830e023db" />
 
 ### Quadro da Sprint 3
+
 #### Quadro da Sprint 3 + Backlog atualizado
 
 #### Board da Sprint 3
+
+</details>
 
 ---
 
